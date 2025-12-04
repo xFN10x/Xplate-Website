@@ -1,6 +1,7 @@
 package dev.xplate.xplate;
 
 import java.nio.file.Path;
+import java.util.logging.Logger;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
@@ -13,7 +14,7 @@ public class XplateApp {
     public static void init(String websitePath) {
         if (Path.of(websitePath).toFile().exists()) {
             WEBSITE_PATH = websitePath;
-            System.out.println("Set website path to: " + websitePath);
+            Logger.getGlobal().info("Set website path to: " + websitePath);
         }
     }
 }

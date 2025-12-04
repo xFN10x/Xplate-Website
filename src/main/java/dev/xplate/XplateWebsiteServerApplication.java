@@ -1,37 +1,45 @@
 package dev.xplate;
 
-import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Logger;
 
 import org.springframework.boot.SpringApplication;
 import dev.xplate.bedrockr.BedrockRApp;
-import dev.xplate.xplate.XplateApp;
 
 public class XplateWebsiteServerApplication {
 
 	public static void main(String[] args) {
-		if (args.length < 3) {
-			System.out.println("Missing key store info");
+		if (args.length < 2) {
+			Logger.getGlobal().info("Missing key store info");
+			return;
 		}
-		// arg 0 is keystore loc, 1 is password, 2 is name.
+		// arg 0 is cert, 1 is private key, 2 is public.
 		// 3 is bedrockR website path, 4 is xplate website path
-		if (args.length >= 4)
-			BedrockRApp.init(args[3]);
+
+		BedrockRApp.init(args.length >= 3 ? args[3] : "");
 
 		SpringApplication BedrockRApp = new SpringApplication(BedrockRApp.class);
-		BedrockRApp.setDefaultProperties(Collections.singletonMap("server.port", "8081"));
-		BedrockRApp.setDefaultProperties(Collections.singletonMap("server.ssl.key-store", args[0]));
-		BedrockRApp.setDefaultProperties(Collections.singletonMap("server.ssl.store-password", args[1]));
-		BedrockRApp.setDefaultProperties(Collections.singletonMap("server.ssl.store-alias", args[2]));
+		Map<String, Object> defaults = new HashMap<String, Object>();
+		defaults.put("server.ssl.bundle", "mybundle");
+		defaults.put("server.port", "8081");
+		defaults.put("spring.ssl.bundle.pem.mybundle.keystore.certificate", args[0]);
+		defaults.put(
+				"spring.ssl.bundle.pem.mybundle.keystore.private-key", args[1]);
+		defaults.put("spring.ssl.bundle.pem.mybundle.truststore.certificate", args[0]);
+
+		BedrockRApp.setDefaultProperties(defaults);
 		BedrockRApp.run(args);
 
-		if (args.length >= 5)
-			XplateApp.init(args[4]);
-		SpringApplication XplateApp = new SpringApplication(XplateApp.class);
-		XplateApp.setDefaultProperties(Collections.singletonMap("server.port", "8082"));
-		XplateApp.setDefaultProperties(Collections.singletonMap("server.ssl.key-store", args[0]));
-		BedrockRApp.setDefaultProperties(Collections.singletonMap("server.ssl.store-password", args[1]));
-		BedrockRApp.setDefaultProperties(Collections.singletonMap("server.ssl.store-alias", args[2]));
-		XplateApp.run(args);
+		/*
+		 * if (args.length >= 5)
+		 * XplateApp.init(args[4]);
+		 * SpringApplication XplateApp = new SpringApplication(XplateApp.class);
+		 * XplateApp.setDefaultProperties(Collections.singletonMap("server.port",
+		 * "8082"));
+		 * 
+		 * XplateApp.run(args);
+		 */
 	}
 
 }

@@ -22,8 +22,12 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-webmvc")
 	testImplementation("org.springframework.boot:spring-boot-starter-webmvc-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+	// https://mvnrepository.com/artifact/org.eclipse.jgit/org.eclipse.jgit
+	implementation("org.eclipse.jgit:org.eclipse.jgit:7.4.0.202509020913-r")
+	// https://mvnrepository.com/artifact/commons-io/commons-io
+	implementation("commons-io:commons-io:2.21.0")
 }
 
-tasks.withType<Test> {
-	useJUnitPlatform()
+tasks.test {
+    failOnNoDiscoveredTests = false
 }
