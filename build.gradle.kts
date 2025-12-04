@@ -15,6 +15,10 @@ java {
 	}
 }
 
+application {
+    mainClass = "dev.xplate.XplateWebsiteServerApplication"
+}
+
 repositories {
 	mavenCentral()
 }
@@ -27,7 +31,6 @@ dependencies {
 	implementation("org.eclipse.jgit:org.eclipse.jgit:7.4.0.202509020913-r")
 	// https://mvnrepository.com/artifact/commons-io/commons-io
 	implementation("commons-io:commons-io:2.21.0")
-    implementation("com.gradleup.shadow:com.gradleup.shadow.gradle.plugin:9.2.2")
 }
 
 tasks.test {
