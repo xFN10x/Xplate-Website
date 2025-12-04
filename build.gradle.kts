@@ -2,6 +2,7 @@ plugins {
 	java
 	id("org.springframework.boot") version "4.0.0"
 	id("io.spring.dependency-management") version "1.1.7"
+    id("com.gradleup.shadow") version "9.2.2"
 }
 
 group = "dev"
@@ -26,8 +27,16 @@ dependencies {
 	implementation("org.eclipse.jgit:org.eclipse.jgit:7.4.0.202509020913-r")
 	// https://mvnrepository.com/artifact/commons-io/commons-io
 	implementation("commons-io:commons-io:2.21.0")
+    implementation("com.gradleup.shadow:com.gradleup.shadow.gradle.plugin:9.2.2")
 }
 
 tasks.test {
     failOnNoDiscoveredTests = false
+}
+
+tasks.named<com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar>("shadowJar") {
+  archiveBaseName = "XplateServer"
+  archiveVersion = "1.0"
+  destinationDirectory = layout.buildDirectory.dir("builtJars")
+  archiveClassifier = ""
 }
