@@ -19,30 +19,27 @@ public class XplateApp {
             WEBSITE_PATH = websitePath;
             Logger.getGlobal().info("Set website path to: " + websitePath);
         } else {
-            boolean isWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
             Logger.getGlobal().info("Cloning Website from https://github.com/xFN10x/Personal-Website.git:deploy");
-            ProcessBuilder proc = new ProcessBuilder();
-            if (isWindows) {
-                proc.directory(Path.of(System.getProperty("user.home")).toFile());
-                if (Path.of(System.getProperty("user.home"), "Personal-Website").toFile().exists()) {
-                    try {
-                        FileUtils
-                                .deleteDirectory(Path.of(System.getProperty("user.home"), "Personal-Website").toFile());
-                    } catch (IOException e) {
-                        Logger.getGlobal().log(Level.SEVERE,
-                                "Failed to remove website dir", e);
-                    }
-                }
 
-                proc.command("git", "clone", "-b", "deploy",
-                        "https://github.com/xFN10x/Personal-Website.git");
+            ProcessBuilder proc = new ProcessBuilder();
+            proc.directory(Path.of(System.getProperty("user.home")).toFile());
+            if (Path.of(System.getProperty("user.home"), "Personal-Website").toFile().exists()) {
                 try {
-                    proc.start();
-                    WEBSITE_PATH = Path.of(System.getProperty("user.home"), "Personal-Website").toString();
+                    FileUtils
+                            .deleteDirectory(Path.of(System.getProperty("user.home"), "Personal-Website").toFile());
                 } catch (IOException e) {
                     Logger.getGlobal().log(Level.SEVERE,
-                            "Failed to get website from git", e);
+                            "Failed to remove website dir", e);
                 }
+            }
+            proc.command("git", "clone", "-b", "deploy",
+                    "https://github.com/xFN10x/Personal-Website.git");
+            try {
+                proc.start();
+                WEBSITE_PATH = Path.of(System.getProperty("user.home"), "Personal-Website").toString();
+            } catch (IOException e) {
+                Logger.getGlobal().log(Level.SEVERE,
+                        "Failed to get website from git", e);
             }
         }
     }
