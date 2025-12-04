@@ -17,7 +17,7 @@ public class XplateWebsiteServerApplication {
 		// arg 0 is cert, 1 is private key, 2 is public.
 		// 3 is bedrockR website path, 4 is xplate website path
 
-		BedrockRApp.init(args.length >= 3 ? args[3] : "");
+		BedrockRApp.init(args.length >= 3 ? args[2] : "");
 
 		SpringApplication BedrockRApp = new SpringApplication(BedrockRApp.class);
 		Map<String, Object> defaults = new HashMap<String, Object>();
