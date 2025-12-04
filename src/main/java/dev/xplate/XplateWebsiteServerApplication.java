@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 
 import org.springframework.boot.SpringApplication;
 import dev.xplate.bedrockr.BedrockRApp;
+import dev.xplate.xplate.XplateApp;
 
 public class XplateWebsiteServerApplication {
 
@@ -20,26 +21,30 @@ public class XplateWebsiteServerApplication {
 		BedrockRApp.init(args.length >= 3 ? args[2] : "");
 
 		SpringApplication BedrockRApp = new SpringApplication(BedrockRApp.class);
-		Map<String, Object> defaults = new HashMap<String, Object>();
-		defaults.put("server.ssl.bundle", "mybundle");
-		defaults.put("server.port", "8081");
-		defaults.put("spring.ssl.bundle.pem.mybundle.keystore.certificate", args[0]);
-		defaults.put(
+		Map<String, Object> defaults1 = new HashMap<String, Object>();
+		defaults1.put("server.ssl.bundle", "mybundle");
+		defaults1.put("server.port", "8081");
+		defaults1.put("spring.ssl.bundle.pem.mybundle.keystore.certificate", args[0]);
+		defaults1.put(
 				"spring.ssl.bundle.pem.mybundle.keystore.private-key", args[1]);
-		defaults.put("spring.ssl.bundle.pem.mybundle.truststore.certificate", args[0]);
+		defaults1.put("spring.ssl.bundle.pem.mybundle.truststore.certificate", args[0]);
 
-		BedrockRApp.setDefaultProperties(defaults);
+		BedrockRApp.setDefaultProperties(defaults1);
 		BedrockRApp.run(args);
 
-		/*
-		 * if (args.length >= 5)
-		 * XplateApp.init(args[4]);
-		 * SpringApplication XplateApp = new SpringApplication(XplateApp.class);
-		 * XplateApp.setDefaultProperties(Collections.singletonMap("server.port",
-		 * "8082"));
-		 * 
-		 * XplateApp.run(args);
-		 */
+		XplateApp.init(args.length >= 4 ? args[3] : "");
+
+		SpringApplication XplateApp = new SpringApplication(XplateApp.class);
+		Map<String, Object> defaults2 = new HashMap<String, Object>();
+		defaults2.put("server.ssl.bundle", "mybundle");
+		defaults2.put("server.port", "8082");
+		defaults2.put("spring.ssl.bundle.pem.mybundle.keystore.certificate", args[0]);
+		defaults2.put(
+				"spring.ssl.bundle.pem.mybundle.keystore.private-key", args[1]);
+		defaults2.put("spring.ssl.bundle.pem.mybundle.truststore.certificate", args[0]);
+
+		XplateApp.setDefaultProperties(defaults2);
+		XplateApp.run(args);
 	}
 
 }
