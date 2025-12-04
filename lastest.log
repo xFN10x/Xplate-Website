@@ -3390,3 +3390,483 @@ java.nio.charset.MalformedInputException: Input length = 1
 2025-12-03T21:45:01.645-04:00  WARN 27004 --- [Xplate Website Server] [http-nio-8081-exec-10] global                                   : 404 on resource: /.well-known/appspecific/com.chrome.devtools.json (C:\Users\mathd\Documents\bedrockR Website\.well-known\appspecific\com.chrome.devtools.json)
 2025-12-03T21:45:24.732-04:00  WARN 27004 --- [Xplate Website Server] [http-nio-8081-exec-8] global                                   : 404 on resource: /.well-known/appspecific/com.chrome.devtools.json (C:\Users\mathd\Documents\bedrockR Website\.well-known\appspecific\com.chrome.devtools.json)
 2025-12-03T21:46:02.593-04:00  WARN 27004 --- [Xplate Website Server] [http-nio-8081-exec-5] global                                   : 404 on resource: /.well-known/appspecific/com.chrome.devtools.json (C:\Users\mathd\Documents\bedrockR Website\.well-known\appspecific\com.chrome.devtools.json)
+2025-12-03T21:54:02.204-04:00  INFO 27004 --- [Xplate Website Server] [SpringApplicationShutdownHook] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2025-12-03T21:54:02.218-04:00  INFO 27004 --- [Xplate Website Server] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+2025-12-03T21:56:39.339-04:00  INFO 36004 --- [Xplate Website Server] [main] d.xplate.XplateWebsiteServerApplication  : Starting XplateWebsiteServerApplication using Java 25.0.1 with PID 36004 (C:\Users\mathd\Documents\Xplate Website\bin\main started by mathd in C:\Users\mathd\Documents\Xplate Website)
+2025-12-03T21:56:39.344-04:00  INFO 36004 --- [Xplate Website Server] [main] d.xplate.XplateWebsiteServerApplication  : No active profile set, falling back to 1 default profile: "default"
+2025-12-03T21:56:40.396-04:00  INFO 36004 --- [Xplate Website Server] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8081 (http)
+2025-12-03T21:56:40.420-04:00  INFO 36004 --- [Xplate Website Server] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-12-03T21:56:40.422-04:00  INFO 36004 --- [Xplate Website Server] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.14]
+2025-12-03T21:56:40.499-04:00  INFO 36004 --- [Xplate Website Server] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1093 ms
+2025-12-03T21:56:40.890-04:00  INFO 36004 --- [Xplate Website Server] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8081 (http) with context path '/'
+2025-12-03T21:56:40.894-04:00  INFO 36004 --- [Xplate Website Server] [main] d.xplate.XplateWebsiteServerApplication  : Started XplateWebsiteServerApplication in 1.979 seconds (process running for 2.367)
+2025-12-03T21:56:40.918-04:00  INFO 36004 --- [Xplate Website Server] [main] d.xplate.XplateWebsiteServerApplication  : Starting XplateWebsiteServerApplication using Java 25.0.1 with PID 36004 (C:\Users\mathd\Documents\Xplate Website\bin\main started by mathd in C:\Users\mathd\Documents\Xplate Website)
+2025-12-03T21:56:40.920-04:00  INFO 36004 --- [Xplate Website Server] [main] d.xplate.XplateWebsiteServerApplication  : No active profile set, falling back to 1 default profile: "default"
+2025-12-03T21:56:41.095-04:00  INFO 36004 --- [Xplate Website Server] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8081 (http)
+2025-12-03T21:56:41.096-04:00  INFO 36004 --- [Xplate Website Server] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-12-03T21:56:41.097-04:00  INFO 36004 --- [Xplate Website Server] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.14]
+2025-12-03T21:56:41.108-04:00  INFO 36004 --- [Xplate Website Server] [http-nio-8081-exec-1] o.apache.coyote.http11.Http11Processor   : Error parsing HTTP request header
+ Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+
+java.lang.IllegalArgumentException: Invalid character found in method name [0x160x030x010x060xb20x010x000x060xae0x030x03k0xceo0xea0xc60xb80xb6?#0xfde0x170xf3{fC0xae!90xe80x080x84790x1fH0xe6h?0x1cc0x1b ]. HTTP method names must be tokens
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:391) ~[tomcat-embed-core-11.0.14.jar:11.0.14]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:270) ~[tomcat-embed-core-11.0.14.jar:11.0.14]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-11.0.14.jar:11.0.14]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903) ~[tomcat-embed-core-11.0.14.jar:11.0.14]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1778) ~[tomcat-embed-core-11.0.14.jar:11.0.14]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-11.0.14.jar:11.0.14]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946) ~[tomcat-embed-core-11.0.14.jar:11.0.14]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480) ~[tomcat-embed-core-11.0.14.jar:11.0.14]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57) ~[tomcat-embed-core-11.0.14.jar:11.0.14]
+	at java.base/java.lang.Thread.run(Thread.java:1474) ~[na:na]
+
+2025-12-03T21:56:41.128-04:00  INFO 36004 --- [Xplate Website Server] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 205 ms
+2025-12-03T21:56:41.229-04:00  WARN 36004 --- [Xplate Website Server] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2025-12-03T21:56:41.241-04:00  INFO 36004 --- [Xplate Website Server] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-12-03T21:56:41.262-04:00 ERROR 36004 --- [Xplate Website Server] [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8081 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8081 or configure this application to listen on another port.
+
+2025-12-03T21:59:01.568-04:00  INFO 30940 --- [Xplate Website Server] [main] d.xplate.XplateWebsiteServerApplication  : Starting XplateWebsiteServerApplication using Java 25.0.1 with PID 30940 (C:\Users\mathd\Documents\Xplate Website\bin\main started by mathd in C:\Users\mathd\Documents\Xplate Website)
+2025-12-03T21:59:01.572-04:00  INFO 30940 --- [Xplate Website Server] [main] d.xplate.XplateWebsiteServerApplication  : No active profile set, falling back to 1 default profile: "default"
+2025-12-03T21:59:01.708-04:00  INFO 27660 --- [Xplate Website Server] [main] d.xplate.XplateWebsiteServerApplication  : Starting XplateWebsiteServerApplication using Java 25.0.1 with PID 27660 (C:\Users\mathd\Documents\Xplate Website\bin\main started by mathd in C:\Users\mathd\Documents\Xplate Website)
+2025-12-03T21:59:01.713-04:00  INFO 27660 --- [Xplate Website Server] [main] d.xplate.XplateWebsiteServerApplication  : No active profile set, falling back to 1 default profile: "default"
+2025-12-03T21:59:02.731-04:00  INFO 30940 --- [Xplate Website Server] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8081 (http)
+2025-12-03T21:59:02.749-04:00  INFO 30940 --- [Xplate Website Server] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-12-03T21:59:02.750-04:00  INFO 30940 --- [Xplate Website Server] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.14]
+2025-12-03T21:59:02.820-04:00  INFO 30940 --- [Xplate Website Server] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1181 ms
+2025-12-03T21:59:02.846-04:00  INFO 27660 --- [Xplate Website Server] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8081 (http)
+2025-12-03T21:59:02.866-04:00  INFO 27660 --- [Xplate Website Server] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-12-03T21:59:02.867-04:00  INFO 27660 --- [Xplate Website Server] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.14]
+2025-12-03T21:59:02.955-04:00  INFO 27660 --- [Xplate Website Server] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1165 ms
+2025-12-03T21:59:03.286-04:00  INFO 30940 --- [Xplate Website Server] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8081 (http) with context path '/'
+2025-12-03T21:59:03.293-04:00  INFO 30940 --- [Xplate Website Server] [main] d.xplate.XplateWebsiteServerApplication  : Started XplateWebsiteServerApplication in 2.329 seconds (process running for 2.944)
+2025-12-03T21:59:03.326-04:00  INFO 30940 --- [Xplate Website Server] [main] d.xplate.XplateWebsiteServerApplication  : Starting XplateWebsiteServerApplication using Java 25.0.1 with PID 30940 (C:\Users\mathd\Documents\Xplate Website\bin\main started by mathd in C:\Users\mathd\Documents\Xplate Website)
+2025-12-03T21:59:03.326-04:00  INFO 30940 --- [Xplate Website Server] [main] d.xplate.XplateWebsiteServerApplication  : No active profile set, falling back to 1 default profile: "default"
+2025-12-03T21:59:03.390-04:00  WARN 27660 --- [Xplate Website Server] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2025-12-03T21:59:03.403-04:00  INFO 27660 --- [Xplate Website Server] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-12-03T21:59:03.420-04:00 ERROR 27660 --- [Xplate Website Server] [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8081 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8081 or configure this application to listen on another port.
+
+2025-12-03T21:59:03.557-04:00  INFO 30940 --- [Xplate Website Server] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8081 (http)
+2025-12-03T21:59:03.562-04:00  INFO 30940 --- [Xplate Website Server] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-12-03T21:59:03.569-04:00  INFO 30940 --- [Xplate Website Server] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.14]
+2025-12-03T21:59:03.601-04:00  INFO 30940 --- [Xplate Website Server] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 270 ms
+2025-12-03T21:59:03.694-04:00  WARN 30940 --- [Xplate Website Server] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2025-12-03T21:59:03.705-04:00  INFO 30940 --- [Xplate Website Server] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-12-03T21:59:03.720-04:00 ERROR 30940 --- [Xplate Website Server] [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8081 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8081 or configure this application to listen on another port.
+
+2025-12-03T21:59:25.569-04:00  INFO 18268 --- [Xplate Website Server] [main] d.xplate.XplateWebsiteServerApplication  : Starting XplateWebsiteServerApplication using Java 25.0.1 with PID 18268 (C:\Users\mathd\Documents\Xplate Website\bin\main started by mathd in c:\Users\mathd\Documents\Xplate Website)
+2025-12-03T21:59:25.572-04:00  INFO 18268 --- [Xplate Website Server] [main] d.xplate.XplateWebsiteServerApplication  : No active profile set, falling back to 1 default profile: "default"
+2025-12-03T21:59:26.304-04:00  INFO 18268 --- [Xplate Website Server] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8081 (http)
+2025-12-03T21:59:26.319-04:00  INFO 18268 --- [Xplate Website Server] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-12-03T21:59:26.321-04:00  INFO 18268 --- [Xplate Website Server] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.14]
+2025-12-03T21:59:26.375-04:00  INFO 18268 --- [Xplate Website Server] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 751 ms
+2025-12-03T21:59:26.709-04:00  INFO 18268 --- [Xplate Website Server] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8081 (http) with context path '/'
+2025-12-03T21:59:26.714-04:00  INFO 18268 --- [Xplate Website Server] [main] d.xplate.XplateWebsiteServerApplication  : Started XplateWebsiteServerApplication in 1.511 seconds (process running for 1.886)
+2025-12-03T21:59:26.745-04:00  INFO 18268 --- [Xplate Website Server] [main] d.xplate.XplateWebsiteServerApplication  : Starting XplateWebsiteServerApplication using Java 25.0.1 with PID 18268 (C:\Users\mathd\Documents\Xplate Website\bin\main started by mathd in c:\Users\mathd\Documents\Xplate Website)
+2025-12-03T21:59:26.745-04:00  INFO 18268 --- [Xplate Website Server] [main] d.xplate.XplateWebsiteServerApplication  : No active profile set, falling back to 1 default profile: "default"
+2025-12-03T21:59:26.908-04:00  INFO 18268 --- [Xplate Website Server] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8081 (http)
+2025-12-03T21:59:26.910-04:00  INFO 18268 --- [Xplate Website Server] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-12-03T21:59:26.911-04:00  INFO 18268 --- [Xplate Website Server] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.14]
+2025-12-03T21:59:26.937-04:00  INFO 18268 --- [Xplate Website Server] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 189 ms
+2025-12-03T21:59:27.029-04:00  WARN 18268 --- [Xplate Website Server] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2025-12-03T21:59:27.042-04:00  INFO 18268 --- [Xplate Website Server] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-12-03T21:59:27.065-04:00 ERROR 18268 --- [Xplate Website Server] [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8081 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8081 or configure this application to listen on another port.
+
+2025-12-03T22:02:06.553-04:00  INFO 37596 --- [Xplate Website Server] [main] d.xplate.XplateWebsiteServerApplication  : Starting XplateWebsiteServerApplication using Java 25.0.1 with PID 37596 (C:\Users\mathd\Documents\Xplate Website\bin\main started by mathd in C:\Users\mathd\Documents\Xplate Website)
+2025-12-03T22:02:06.557-04:00  INFO 37596 --- [Xplate Website Server] [main] d.xplate.XplateWebsiteServerApplication  : No active profile set, falling back to 1 default profile: "default"
+2025-12-03T22:02:07.440-04:00  WARN 37596 --- [Xplate Website Server] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server
+2025-12-03T22:02:07.447-04:00  INFO 37596 --- [Xplate Website Server] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-12-03T22:02:07.465-04:00 ERROR 37596 --- [Xplate Website Server] [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.context.ApplicationContextException: Unable to start web server
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:167) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:614) ~[spring-context-7.0.1.jar:7.0.1]
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:765) ~[spring-boot-4.0.0.jar:4.0.0]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:454) ~[spring-boot-4.0.0.jar:4.0.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321) ~[spring-boot-4.0.0.jar:4.0.0]
+	at dev.xplate.XplateWebsiteServerApplication.main(XplateWebsiteServerApplication.java:16) ~[main/:na]
+Caused by: java.lang.IllegalStateException: SSL is enabled but no trust material is configured for the default host
+	at org.springframework.util.Assert.state(Assert.java:80) ~[spring-core-7.0.1.jar:7.0.1]
+	at org.springframework.boot.web.server.WebServerSslBundle$WebServerSslStoreBundle.<init>(WebServerSslBundle.java:212) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	at org.springframework.boot.web.server.WebServerSslBundle.createStoreBundle(WebServerSslBundle.java:151) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	at org.springframework.boot.web.server.WebServerSslBundle.get(WebServerSslBundle.java:144) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	at org.springframework.boot.web.server.AbstractConfigurableWebServerFactory.getSslBundle(AbstractConfigurableWebServerFactory.java:201) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	at org.springframework.boot.tomcat.TomcatWebServerFactory.customizeSsl(TomcatWebServerFactory.java:437) ~[spring-boot-tomcat-4.0.0.jar:4.0.0]
+	at org.springframework.boot.tomcat.TomcatWebServerFactory.customizeConnector(TomcatWebServerFactory.java:413) ~[spring-boot-tomcat-4.0.0.jar:4.0.0]
+	at org.springframework.boot.tomcat.TomcatWebServerFactory.createTomcat(TomcatWebServerFactory.java:383) ~[spring-boot-tomcat-4.0.0.jar:4.0.0]
+	at org.springframework.boot.tomcat.servlet.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:164) ~[spring-boot-tomcat-4.0.0.jar:4.0.0]
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:190) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:164) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	... 6 common frames omitted
+
+2025-12-03T22:02:17.661-04:00  INFO 36348 --- [Xplate Website Server] [main] d.xplate.XplateWebsiteServerApplication  : Starting XplateWebsiteServerApplication using Java 25.0.1 with PID 36348 (C:\Users\mathd\Documents\Xplate Website\bin\main started by mathd in c:\Users\mathd\Documents\Xplate Website)
+2025-12-03T22:02:17.665-04:00  INFO 36348 --- [Xplate Website Server] [main] d.xplate.XplateWebsiteServerApplication  : No active profile set, falling back to 1 default profile: "default"
+2025-12-03T22:02:18.504-04:00  WARN 36348 --- [Xplate Website Server] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server
+2025-12-03T22:02:18.511-04:00  INFO 36348 --- [Xplate Website Server] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-12-03T22:02:18.526-04:00 ERROR 36348 --- [Xplate Website Server] [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.context.ApplicationContextException: Unable to start web server
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:167) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:614) ~[spring-context-7.0.1.jar:7.0.1]
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:765) ~[spring-boot-4.0.0.jar:4.0.0]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:454) ~[spring-boot-4.0.0.jar:4.0.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321) ~[spring-boot-4.0.0.jar:4.0.0]
+	at dev.xplate.XplateWebsiteServerApplication.main(XplateWebsiteServerApplication.java:16) ~[main/:na]
+Caused by: java.lang.IllegalStateException: SSL is enabled but no trust material is configured for the default host
+	at org.springframework.util.Assert.state(Assert.java:80) ~[spring-core-7.0.1.jar:7.0.1]
+	at org.springframework.boot.web.server.WebServerSslBundle$WebServerSslStoreBundle.<init>(WebServerSslBundle.java:212) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	at org.springframework.boot.web.server.WebServerSslBundle.createStoreBundle(WebServerSslBundle.java:151) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	at org.springframework.boot.web.server.WebServerSslBundle.get(WebServerSslBundle.java:144) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	at org.springframework.boot.web.server.AbstractConfigurableWebServerFactory.getSslBundle(AbstractConfigurableWebServerFactory.java:201) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	at org.springframework.boot.tomcat.TomcatWebServerFactory.customizeSsl(TomcatWebServerFactory.java:437) ~[spring-boot-tomcat-4.0.0.jar:4.0.0]
+	at org.springframework.boot.tomcat.TomcatWebServerFactory.customizeConnector(TomcatWebServerFactory.java:413) ~[spring-boot-tomcat-4.0.0.jar:4.0.0]
+	at org.springframework.boot.tomcat.TomcatWebServerFactory.createTomcat(TomcatWebServerFactory.java:383) ~[spring-boot-tomcat-4.0.0.jar:4.0.0]
+	at org.springframework.boot.tomcat.servlet.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:164) ~[spring-boot-tomcat-4.0.0.jar:4.0.0]
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:190) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:164) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	... 6 common frames omitted
+
+2025-12-03T22:02:22.371-04:00  INFO 35208 --- [Xplate Website Server] [main] d.xplate.XplateWebsiteServerApplication  : Starting XplateWebsiteServerApplication using Java 25.0.1 with PID 35208 (C:\Users\mathd\Documents\Xplate Website\bin\main started by mathd in c:\Users\mathd\Documents\Xplate Website)
+2025-12-03T22:02:22.375-04:00  INFO 35208 --- [Xplate Website Server] [main] d.xplate.XplateWebsiteServerApplication  : No active profile set, falling back to 1 default profile: "default"
+2025-12-03T22:02:23.166-04:00  WARN 35208 --- [Xplate Website Server] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server
+2025-12-03T22:02:23.171-04:00  INFO 35208 --- [Xplate Website Server] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-12-03T22:02:23.185-04:00 ERROR 35208 --- [Xplate Website Server] [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.context.ApplicationContextException: Unable to start web server
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:167) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:614) ~[spring-context-7.0.1.jar:7.0.1]
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:765) ~[spring-boot-4.0.0.jar:4.0.0]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:454) ~[spring-boot-4.0.0.jar:4.0.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321) ~[spring-boot-4.0.0.jar:4.0.0]
+	at dev.xplate.XplateWebsiteServerApplication.main(XplateWebsiteServerApplication.java:16) ~[main/:na]
+Caused by: java.lang.IllegalStateException: SSL is enabled but no trust material is configured for the default host
+	at org.springframework.util.Assert.state(Assert.java:80) ~[spring-core-7.0.1.jar:7.0.1]
+	at org.springframework.boot.web.server.WebServerSslBundle$WebServerSslStoreBundle.<init>(WebServerSslBundle.java:212) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	at org.springframework.boot.web.server.WebServerSslBundle.createStoreBundle(WebServerSslBundle.java:151) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	at org.springframework.boot.web.server.WebServerSslBundle.get(WebServerSslBundle.java:144) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	at org.springframework.boot.web.server.AbstractConfigurableWebServerFactory.getSslBundle(AbstractConfigurableWebServerFactory.java:201) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	at org.springframework.boot.tomcat.TomcatWebServerFactory.customizeSsl(TomcatWebServerFactory.java:437) ~[spring-boot-tomcat-4.0.0.jar:4.0.0]
+	at org.springframework.boot.tomcat.TomcatWebServerFactory.customizeConnector(TomcatWebServerFactory.java:413) ~[spring-boot-tomcat-4.0.0.jar:4.0.0]
+	at org.springframework.boot.tomcat.TomcatWebServerFactory.createTomcat(TomcatWebServerFactory.java:383) ~[spring-boot-tomcat-4.0.0.jar:4.0.0]
+	at org.springframework.boot.tomcat.servlet.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:164) ~[spring-boot-tomcat-4.0.0.jar:4.0.0]
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:190) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:164) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	... 6 common frames omitted
+
+2025-12-03T22:03:53.130-04:00  INFO 18412 --- [Xplate Website Server] [main] d.xplate.XplateWebsiteServerApplication  : Starting XplateWebsiteServerApplication using Java 25.0.1 with PID 18412 (C:\Users\mathd\Documents\Xplate Website\bin\main started by mathd in c:\Users\mathd\Documents\Xplate Website)
+2025-12-03T22:03:53.134-04:00  INFO 18412 --- [Xplate Website Server] [main] d.xplate.XplateWebsiteServerApplication  : No active profile set, falling back to 1 default profile: "default"
+2025-12-03T22:03:53.825-04:00  WARN 18412 --- [Xplate Website Server] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server
+2025-12-03T22:03:53.832-04:00  INFO 18412 --- [Xplate Website Server] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-12-03T22:03:53.851-04:00 ERROR 18412 --- [Xplate Website Server] [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.context.ApplicationContextException: Unable to start web server
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:167) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:614) ~[spring-context-7.0.1.jar:7.0.1]
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:765) ~[spring-boot-4.0.0.jar:4.0.0]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:454) ~[spring-boot-4.0.0.jar:4.0.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321) ~[spring-boot-4.0.0.jar:4.0.0]
+	at dev.xplate.XplateWebsiteServerApplication.main(XplateWebsiteServerApplication.java:16) ~[main/:na]
+Caused by: java.lang.IllegalStateException: Unable to create key store: Could not load store from 'classpath:keystore/baeldung.p12'
+	at org.springframework.boot.ssl.jks.JksSslStoreBundle.createKeyStore(JksSslStoreBundle.java:114) ~[spring-boot-4.0.0.jar:4.0.0]
+	at org.springframework.boot.ssl.jks.JksSslStoreBundle.lambda$new$0(JksSslStoreBundle.java:77) ~[spring-boot-4.0.0.jar:4.0.0]
+	at org.springframework.util.function.SingletonSupplier.get(SingletonSupplier.java:108) ~[spring-core-7.0.1.jar:7.0.1]
+	at org.springframework.boot.ssl.jks.JksSslStoreBundle.getKeyStore(JksSslStoreBundle.java:83) ~[spring-boot-4.0.0.jar:4.0.0]
+	at org.springframework.boot.web.server.WebServerSslBundle.createKeyStore(WebServerSslBundle.java:159) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	at org.springframework.boot.web.server.WebServerSslBundle.createStoreBundle(WebServerSslBundle.java:149) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	at org.springframework.boot.web.server.WebServerSslBundle.get(WebServerSslBundle.java:144) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	at org.springframework.boot.web.server.AbstractConfigurableWebServerFactory.getSslBundle(AbstractConfigurableWebServerFactory.java:201) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	at org.springframework.boot.tomcat.TomcatWebServerFactory.customizeSsl(TomcatWebServerFactory.java:437) ~[spring-boot-tomcat-4.0.0.jar:4.0.0]
+	at org.springframework.boot.tomcat.TomcatWebServerFactory.customizeConnector(TomcatWebServerFactory.java:413) ~[spring-boot-tomcat-4.0.0.jar:4.0.0]
+	at org.springframework.boot.tomcat.TomcatWebServerFactory.createTomcat(TomcatWebServerFactory.java:383) ~[spring-boot-tomcat-4.0.0.jar:4.0.0]
+	at org.springframework.boot.tomcat.servlet.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:164) ~[spring-boot-tomcat-4.0.0.jar:4.0.0]
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:190) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:164) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	... 6 common frames omitted
+Caused by: java.lang.IllegalStateException: Could not load store from 'classpath:keystore/baeldung.p12'
+	at org.springframework.boot.ssl.jks.JksSslStoreBundle.loadKeyStore(JksSslStoreBundle.java:142) ~[spring-boot-4.0.0.jar:4.0.0]
+	at org.springframework.boot.ssl.jks.JksSslStoreBundle.createKeyStore(JksSslStoreBundle.java:109) ~[spring-boot-4.0.0.jar:4.0.0]
+	... 19 common frames omitted
+Caused by: java.io.FileNotFoundException: class path resource [keystore/baeldung.p12] cannot be opened because it does not exist
+	at org.springframework.core.io.ClassPathResource.getInputStream(ClassPathResource.java:212) ~[spring-core-7.0.1.jar:7.0.1]
+	at org.springframework.boot.ssl.jks.JksSslStoreBundle.loadKeyStore(JksSslStoreBundle.java:137) ~[spring-boot-4.0.0.jar:4.0.0]
+	... 20 common frames omitted
+
+2025-12-03T22:06:35.011-04:00  INFO 21596 --- [Xplate Website Server] [main] d.xplate.XplateWebsiteServerApplication  : Starting XplateWebsiteServerApplication using Java 25.0.1 with PID 21596 (C:\Users\mathd\Documents\Xplate Website\bin\main started by mathd in c:\Users\mathd\Documents\Xplate Website)
+2025-12-03T22:06:35.014-04:00  INFO 21596 --- [Xplate Website Server] [main] d.xplate.XplateWebsiteServerApplication  : No active profile set, falling back to 1 default profile: "default"
+2025-12-03T22:06:35.681-04:00  WARN 21596 --- [Xplate Website Server] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server
+2025-12-03T22:06:35.688-04:00  INFO 21596 --- [Xplate Website Server] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-12-03T22:06:35.699-04:00 ERROR 21596 --- [Xplate Website Server] [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.context.ApplicationContextException: Unable to start web server
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:167) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:614) ~[spring-context-7.0.1.jar:7.0.1]
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:765) ~[spring-boot-4.0.0.jar:4.0.0]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:454) ~[spring-boot-4.0.0.jar:4.0.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321) ~[spring-boot-4.0.0.jar:4.0.0]
+	at dev.xplate.XplateWebsiteServerApplication.main(XplateWebsiteServerApplication.java:17) ~[main/:na]
+Caused by: java.lang.IllegalStateException: Unable to create key store: Could not load store from 'classpath:keystore/baeldung.p12'
+	at org.springframework.boot.ssl.jks.JksSslStoreBundle.createKeyStore(JksSslStoreBundle.java:114) ~[spring-boot-4.0.0.jar:4.0.0]
+	at org.springframework.boot.ssl.jks.JksSslStoreBundle.lambda$new$0(JksSslStoreBundle.java:77) ~[spring-boot-4.0.0.jar:4.0.0]
+	at org.springframework.util.function.SingletonSupplier.get(SingletonSupplier.java:108) ~[spring-core-7.0.1.jar:7.0.1]
+	at org.springframework.boot.ssl.jks.JksSslStoreBundle.getKeyStore(JksSslStoreBundle.java:83) ~[spring-boot-4.0.0.jar:4.0.0]
+	at org.springframework.boot.web.server.WebServerSslBundle.createKeyStore(WebServerSslBundle.java:159) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	at org.springframework.boot.web.server.WebServerSslBundle.createStoreBundle(WebServerSslBundle.java:149) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	at org.springframework.boot.web.server.WebServerSslBundle.get(WebServerSslBundle.java:144) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	at org.springframework.boot.web.server.AbstractConfigurableWebServerFactory.getSslBundle(AbstractConfigurableWebServerFactory.java:201) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	at org.springframework.boot.tomcat.TomcatWebServerFactory.customizeSsl(TomcatWebServerFactory.java:437) ~[spring-boot-tomcat-4.0.0.jar:4.0.0]
+	at org.springframework.boot.tomcat.TomcatWebServerFactory.customizeConnector(TomcatWebServerFactory.java:413) ~[spring-boot-tomcat-4.0.0.jar:4.0.0]
+	at org.springframework.boot.tomcat.TomcatWebServerFactory.createTomcat(TomcatWebServerFactory.java:383) ~[spring-boot-tomcat-4.0.0.jar:4.0.0]
+	at org.springframework.boot.tomcat.servlet.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:164) ~[spring-boot-tomcat-4.0.0.jar:4.0.0]
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:190) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:164) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	... 6 common frames omitted
+Caused by: java.lang.IllegalStateException: Could not load store from 'classpath:keystore/baeldung.p12'
+	at org.springframework.boot.ssl.jks.JksSslStoreBundle.loadKeyStore(JksSslStoreBundle.java:142) ~[spring-boot-4.0.0.jar:4.0.0]
+	at org.springframework.boot.ssl.jks.JksSslStoreBundle.createKeyStore(JksSslStoreBundle.java:109) ~[spring-boot-4.0.0.jar:4.0.0]
+	... 19 common frames omitted
+Caused by: java.io.FileNotFoundException: class path resource [keystore/baeldung.p12] cannot be opened because it does not exist
+	at org.springframework.core.io.ClassPathResource.getInputStream(ClassPathResource.java:212) ~[spring-core-7.0.1.jar:7.0.1]
+	at org.springframework.boot.ssl.jks.JksSslStoreBundle.loadKeyStore(JksSslStoreBundle.java:137) ~[spring-boot-4.0.0.jar:4.0.0]
+	... 20 common frames omitted
+
+2025-12-03T22:06:55.571-04:00  INFO 12996 --- [Xplate Website Server] [main] d.xplate.XplateWebsiteServerApplication  : Starting XplateWebsiteServerApplication using Java 25.0.1 with PID 12996 (C:\Users\mathd\Documents\Xplate Website\bin\main started by mathd in c:\Users\mathd\Documents\Xplate Website)
+2025-12-03T22:06:55.575-04:00  INFO 12996 --- [Xplate Website Server] [main] d.xplate.XplateWebsiteServerApplication  : No active profile set, falling back to 1 default profile: "default"
+2025-12-03T22:06:56.247-04:00  WARN 12996 --- [Xplate Website Server] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server
+2025-12-03T22:06:56.252-04:00  INFO 12996 --- [Xplate Website Server] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-12-03T22:06:56.266-04:00 ERROR 12996 --- [Xplate Website Server] [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.context.ApplicationContextException: Unable to start web server
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:167) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:614) ~[spring-context-7.0.1.jar:7.0.1]
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:765) ~[spring-boot-4.0.0.jar:4.0.0]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:454) ~[spring-boot-4.0.0.jar:4.0.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321) ~[spring-boot-4.0.0.jar:4.0.0]
+	at dev.xplate.XplateWebsiteServerApplication.main(XplateWebsiteServerApplication.java:17) ~[main/:na]
+Caused by: java.lang.IllegalStateException: Unable to create key store: Could not load store from '"C:\MPC\cert.jks"'
+	at org.springframework.boot.ssl.jks.JksSslStoreBundle.createKeyStore(JksSslStoreBundle.java:114) ~[spring-boot-4.0.0.jar:4.0.0]
+	at org.springframework.boot.ssl.jks.JksSslStoreBundle.lambda$new$0(JksSslStoreBundle.java:77) ~[spring-boot-4.0.0.jar:4.0.0]
+	at org.springframework.util.function.SingletonSupplier.get(SingletonSupplier.java:108) ~[spring-core-7.0.1.jar:7.0.1]
+	at org.springframework.boot.ssl.jks.JksSslStoreBundle.getKeyStore(JksSslStoreBundle.java:83) ~[spring-boot-4.0.0.jar:4.0.0]
+	at org.springframework.boot.web.server.WebServerSslBundle.createKeyStore(WebServerSslBundle.java:159) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	at org.springframework.boot.web.server.WebServerSslBundle.createStoreBundle(WebServerSslBundle.java:149) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	at org.springframework.boot.web.server.WebServerSslBundle.get(WebServerSslBundle.java:144) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	at org.springframework.boot.web.server.AbstractConfigurableWebServerFactory.getSslBundle(AbstractConfigurableWebServerFactory.java:201) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	at org.springframework.boot.tomcat.TomcatWebServerFactory.customizeSsl(TomcatWebServerFactory.java:437) ~[spring-boot-tomcat-4.0.0.jar:4.0.0]
+	at org.springframework.boot.tomcat.TomcatWebServerFactory.customizeConnector(TomcatWebServerFactory.java:413) ~[spring-boot-tomcat-4.0.0.jar:4.0.0]
+	at org.springframework.boot.tomcat.TomcatWebServerFactory.createTomcat(TomcatWebServerFactory.java:383) ~[spring-boot-tomcat-4.0.0.jar:4.0.0]
+	at org.springframework.boot.tomcat.servlet.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:164) ~[spring-boot-tomcat-4.0.0.jar:4.0.0]
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:190) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:164) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	... 6 common frames omitted
+Caused by: java.lang.IllegalStateException: Could not load store from '"C:\MPC\cert.jks"'
+	at org.springframework.boot.ssl.jks.JksSslStoreBundle.loadKeyStore(JksSslStoreBundle.java:142) ~[spring-boot-4.0.0.jar:4.0.0]
+	at org.springframework.boot.ssl.jks.JksSslStoreBundle.createKeyStore(JksSslStoreBundle.java:109) ~[spring-boot-4.0.0.jar:4.0.0]
+	... 19 common frames omitted
+Caused by: java.nio.file.InvalidPathException: Illegal char <"> at index 0: "C:\MPC\cert.jks"
+	at java.base/sun.nio.fs.WindowsPathParser.normalize(WindowsPathParser.java:191) ~[na:na]
+	at java.base/sun.nio.fs.WindowsPathParser.parse(WindowsPathParser.java:142) ~[na:na]
+	at java.base/sun.nio.fs.WindowsPathParser.parse(WindowsPathParser.java:46) ~[na:na]
+	at java.base/sun.nio.fs.WindowsPath.parse(WindowsPath.java:92) ~[na:na]
+	at java.base/sun.nio.fs.WindowsFileSystem.getPath(WindowsFileSystem.java:203) ~[na:na]
+	at java.base/java.io.File.toPath(File.java:2099) ~[na:na]
+	at org.springframework.core.io.FileSystemResource.<init>(FileSystemResource.java:87) ~[spring-core-7.0.1.jar:7.0.1]
+	at org.springframework.boot.io.ApplicationResourceLoader$ApplicationResource.<init>(ApplicationResourceLoader.java:253) ~[spring-boot-4.0.0.jar:4.0.0]
+	at org.springframework.boot.io.ApplicationResourceLoader$ApplicationFileSystemResourceLoader.getResourceByPath(ApplicationResourceLoader.java:211) ~[spring-boot-4.0.0.jar:4.0.0]
+	at org.springframework.core.io.DefaultResourceLoader.getResource(DefaultResourceLoader.java:169) ~[spring-core-7.0.1.jar:7.0.1]
+	at org.springframework.boot.io.ApplicationResourceLoader$ApplicationFileSystemResourceLoader.getResource(ApplicationResourceLoader.java:186) ~[spring-boot-4.0.0.jar:4.0.0]
+	at org.springframework.boot.io.ApplicationResourceLoader$ProtocolResolvingResourceLoader.getResource(ApplicationResourceLoader.java:301) ~[spring-boot-4.0.0.jar:4.0.0]
+	at org.springframework.boot.ssl.jks.JksSslStoreBundle.loadKeyStore(JksSslStoreBundle.java:137) ~[spring-boot-4.0.0.jar:4.0.0]
+	... 20 common frames omitted
+
+2025-12-03T22:07:13.913-04:00  INFO 23176 --- [Xplate Website Server] [main] d.xplate.XplateWebsiteServerApplication  : Starting XplateWebsiteServerApplication using Java 25.0.1 with PID 23176 (C:\Users\mathd\Documents\Xplate Website\bin\main started by mathd in c:\Users\mathd\Documents\Xplate Website)
+2025-12-03T22:07:13.916-04:00  INFO 23176 --- [Xplate Website Server] [main] d.xplate.XplateWebsiteServerApplication  : No active profile set, falling back to 1 default profile: "default"
+2025-12-03T22:07:14.719-04:00  INFO 23176 --- [Xplate Website Server] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8081 (https)
+2025-12-03T22:07:14.736-04:00  INFO 23176 --- [Xplate Website Server] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-12-03T22:07:14.736-04:00  INFO 23176 --- [Xplate Website Server] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.14]
+2025-12-03T22:07:14.793-04:00  INFO 23176 --- [Xplate Website Server] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 816 ms
+2025-12-03T22:07:15.205-04:00  WARN 23176 --- [Xplate Website Server] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2025-12-03T22:07:15.216-04:00  INFO 23176 --- [Xplate Website Server] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-12-03T22:07:15.230-04:00 ERROR 23176 --- [Xplate Website Server] [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:423) ~[spring-context-7.0.1.jar:7.0.1]
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:409) ~[spring-context-7.0.1.jar:7.0.1]
+	at org.springframework.context.support.DefaultLifecycleProcessor$LifecycleGroup.start(DefaultLifecycleProcessor.java:613) ~[spring-context-7.0.1.jar:7.0.1]
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75) ~[na:na]
+	at org.springframework.context.support.DefaultLifecycleProcessor.startBeans(DefaultLifecycleProcessor.java:379) ~[spring-context-7.0.1.jar:7.0.1]
+	at org.springframework.context.support.DefaultLifecycleProcessor.onRefresh(DefaultLifecycleProcessor.java:306) ~[spring-context-7.0.1.jar:7.0.1]
+	at org.springframework.context.support.AbstractApplicationContext.finishRefresh(AbstractApplicationContext.java:1002) ~[spring-context-7.0.1.jar:7.0.1]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:623) ~[spring-context-7.0.1.jar:7.0.1]
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:765) ~[spring-boot-4.0.0.jar:4.0.0]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:454) ~[spring-boot-4.0.0.jar:4.0.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321) ~[spring-boot-4.0.0.jar:4.0.0]
+	at dev.xplate.XplateWebsiteServerApplication.main(XplateWebsiteServerApplication.java:17) ~[main/:na]
+Caused by: org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat server
+	at org.springframework.boot.tomcat.TomcatWebServer.start(TomcatWebServer.java:248) ~[spring-boot-tomcat-4.0.0.jar:4.0.0]
+	at org.springframework.boot.web.server.servlet.context.WebServerStartStopLifecycle.start(WebServerStartStopLifecycle.java:44) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:420) ~[spring-context-7.0.1.jar:7.0.1]
+	... 12 common frames omitted
+Caused by: java.lang.IllegalArgumentException: standardService.connector.startFailed
+	at org.apache.catalina.core.StandardService.addConnector(StandardService.java:220) ~[tomcat-embed-core-11.0.14.jar:11.0.14]
+	at org.springframework.boot.tomcat.TomcatWebServer.addPreviouslyRemovedConnectors(TomcatWebServer.java:307) ~[spring-boot-tomcat-4.0.0.jar:4.0.0]
+	at org.springframework.boot.tomcat.TomcatWebServer.start(TomcatWebServer.java:233) ~[spring-boot-tomcat-4.0.0.jar:4.0.0]
+	... 14 common frames omitted
+Caused by: org.apache.catalina.LifecycleException: Protocol handler start failed
+	at org.apache.catalina.connector.Connector.startInternal(Connector.java:1107) ~[tomcat-embed-core-11.0.14.jar:11.0.14]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164) ~[tomcat-embed-core-11.0.14.jar:11.0.14]
+	at org.apache.catalina.core.StandardService.addConnector(StandardService.java:217) ~[tomcat-embed-core-11.0.14.jar:11.0.14]
+	... 16 common frames omitted
+Caused by: java.lang.IllegalArgumentException: Error creating SSLContext
+	at org.apache.tomcat.util.net.AbstractEndpoint.createSSLContext(AbstractEndpoint.java:420) ~[tomcat-embed-core-11.0.14.jar:11.0.14]
+	at org.apache.tomcat.util.net.AbstractEndpoint.initialiseSsl(AbstractEndpoint.java:631) ~[tomcat-embed-core-11.0.14.jar:11.0.14]
+	at org.apache.tomcat.util.net.NioEndpoint.bind(NioEndpoint.java:225) ~[tomcat-embed-core-11.0.14.jar:11.0.14]
+	at org.apache.tomcat.util.net.AbstractEndpoint.bindWithCleanup(AbstractEndpoint.java:1600) ~[tomcat-embed-core-11.0.14.jar:11.0.14]
+	at org.apache.tomcat.util.net.AbstractEndpoint.start(AbstractEndpoint.java:1683) ~[tomcat-embed-core-11.0.14.jar:11.0.14]
+	at org.apache.coyote.AbstractProtocol.start(AbstractProtocol.java:644) ~[tomcat-embed-core-11.0.14.jar:11.0.14]
+	at org.apache.catalina.connector.Connector.startInternal(Connector.java:1104) ~[tomcat-embed-core-11.0.14.jar:11.0.14]
+	... 18 common frames omitted
+Caused by: java.security.UnrecoverableKeyException: Get Key failed: Given final block not properly padded. Such issues can arise if a bad key is used during decryption.
+	at java.base/sun.security.pkcs12.PKCS12KeyStore.internalGetKey(PKCS12KeyStore.java:455) ~[na:na]
+	at java.base/sun.security.pkcs12.PKCS12KeyStore.engineGetKey(PKCS12KeyStore.java:297) ~[na:na]
+	at java.base/sun.security.util.KeyStoreDelegator.engineGetKey(KeyStoreDelegator.java:91) ~[na:na]
+	at java.base/java.security.KeyStore.getKey(KeyStore.java:1077) ~[na:na]
+	at org.apache.tomcat.util.net.SSLUtilBase.getKeyManagers(SSLUtilBase.java:380) ~[tomcat-embed-core-11.0.14.jar:11.0.14]
+	at org.apache.tomcat.util.net.SSLUtilBase.createSSLContext(SSLUtilBase.java:261) ~[tomcat-embed-core-11.0.14.jar:11.0.14]
+	at org.apache.tomcat.util.net.AbstractEndpoint.createSSLContext(AbstractEndpoint.java:418) ~[tomcat-embed-core-11.0.14.jar:11.0.14]
+	... 24 common frames omitted
+Caused by: javax.crypto.BadPaddingException: Given final block not properly padded. Such issues can arise if a bad key is used during decryption.
+	at java.base/com.sun.crypto.provider.CipherCore.unpad(CipherCore.java:861) ~[na:na]
+	at java.base/com.sun.crypto.provider.CipherCore.fillOutputBuffer(CipherCore.java:940) ~[na:na]
+	at java.base/com.sun.crypto.provider.CipherCore.doFinal(CipherCore.java:734) ~[na:na]
+	at java.base/com.sun.crypto.provider.PBES2Core.engineDoFinal(PBES2Core.java:203) ~[na:na]
+	at java.base/javax.crypto.Cipher.doFinal(Cipher.java:2260) ~[na:na]
+	at java.base/sun.security.pkcs12.PKCS12KeyStore.lambda$internalGetKey$0(PKCS12KeyStore.java:371) ~[na:na]
+	at java.base/sun.security.pkcs12.PKCS12KeyStore$RetryWithZero.run(PKCS12KeyStore.java:261) ~[na:na]
+	at java.base/sun.security.pkcs12.PKCS12KeyStore.internalGetKey(PKCS12KeyStore.java:362) ~[na:na]
+	... 30 common frames omitted
+
+2025-12-03T22:09:19.186-04:00  INFO 13560 --- [Xplate Website Server] [main] d.xplate.XplateWebsiteServerApplication  : Starting XplateWebsiteServerApplication using Java 25.0.1 with PID 13560 (C:\Users\mathd\Documents\Xplate Website\bin\main started by mathd in c:\Users\mathd\Documents\Xplate Website)
+2025-12-03T22:09:19.190-04:00  INFO 13560 --- [Xplate Website Server] [main] d.xplate.XplateWebsiteServerApplication  : No active profile set, falling back to 1 default profile: "default"
+2025-12-03T22:09:19.934-04:00  WARN 13560 --- [Xplate Website Server] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server
+2025-12-03T22:09:19.938-04:00  INFO 13560 --- [Xplate Website Server] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-12-03T22:09:19.951-04:00 ERROR 13560 --- [Xplate Website Server] [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.context.ApplicationContextException: Unable to start web server
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:167) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:614) ~[spring-context-7.0.1.jar:7.0.1]
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:765) ~[spring-boot-4.0.0.jar:4.0.0]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:454) ~[spring-boot-4.0.0.jar:4.0.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321) ~[spring-boot-4.0.0.jar:4.0.0]
+	at dev.xplate.XplateWebsiteServerApplication.main(XplateWebsiteServerApplication.java:20) ~[main/:na]
+Caused by: java.lang.IllegalStateException: Unable to create key store: Could not load store from 'C:\Users\mathd\Documents\bedrockR Website'
+	at org.springframework.boot.ssl.jks.JksSslStoreBundle.createKeyStore(JksSslStoreBundle.java:114) ~[spring-boot-4.0.0.jar:4.0.0]
+	at org.springframework.boot.ssl.jks.JksSslStoreBundle.lambda$new$0(JksSslStoreBundle.java:77) ~[spring-boot-4.0.0.jar:4.0.0]
+	at org.springframework.util.function.SingletonSupplier.get(SingletonSupplier.java:108) ~[spring-core-7.0.1.jar:7.0.1]
+	at org.springframework.boot.ssl.jks.JksSslStoreBundle.getKeyStore(JksSslStoreBundle.java:83) ~[spring-boot-4.0.0.jar:4.0.0]
+	at org.springframework.boot.web.server.WebServerSslBundle.createKeyStore(WebServerSslBundle.java:159) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	at org.springframework.boot.web.server.WebServerSslBundle.createStoreBundle(WebServerSslBundle.java:149) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	at org.springframework.boot.web.server.WebServerSslBundle.get(WebServerSslBundle.java:144) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	at org.springframework.boot.web.server.AbstractConfigurableWebServerFactory.getSslBundle(AbstractConfigurableWebServerFactory.java:201) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	at org.springframework.boot.tomcat.TomcatWebServerFactory.customizeSsl(TomcatWebServerFactory.java:437) ~[spring-boot-tomcat-4.0.0.jar:4.0.0]
+	at org.springframework.boot.tomcat.TomcatWebServerFactory.customizeConnector(TomcatWebServerFactory.java:413) ~[spring-boot-tomcat-4.0.0.jar:4.0.0]
+	at org.springframework.boot.tomcat.TomcatWebServerFactory.createTomcat(TomcatWebServerFactory.java:383) ~[spring-boot-tomcat-4.0.0.jar:4.0.0]
+	at org.springframework.boot.tomcat.servlet.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:164) ~[spring-boot-tomcat-4.0.0.jar:4.0.0]
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:190) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:164) ~[spring-boot-web-server-4.0.0.jar:4.0.0]
+	... 6 common frames omitted
+Caused by: java.lang.IllegalStateException: Could not load store from 'C:\Users\mathd\Documents\bedrockR Website'
+	at org.springframework.boot.ssl.jks.JksSslStoreBundle.loadKeyStore(JksSslStoreBundle.java:142) ~[spring-boot-4.0.0.jar:4.0.0]
+	at org.springframework.boot.ssl.jks.JksSslStoreBundle.createKeyStore(JksSslStoreBundle.java:109) ~[spring-boot-4.0.0.jar:4.0.0]
+	... 19 common frames omitted
+Caused by: java.nio.file.AccessDeniedException: C:\Users\mathd\Documents\bedrockR Website
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:89) ~[na:na]
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[na:na]
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108) ~[na:na]
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.newByteChannel(WindowsFileSystemProvider.java:231) ~[na:na]
+	at java.base/java.nio.file.Files.newByteChannel(Files.java:357) ~[na:na]
+	at java.base/java.nio.file.Files.newByteChannel(Files.java:399) ~[na:na]
+	at java.base/java.nio.file.spi.FileSystemProvider.newInputStream(FileSystemProvider.java:371) ~[na:na]
+	at java.base/java.nio.file.Files.newInputStream(Files.java:154) ~[na:na]
+	at org.springframework.core.io.FileSystemResource.getInputStream(FileSystemResource.java:193) ~[spring-core-7.0.1.jar:7.0.1]
+	at org.springframework.boot.ssl.jks.JksSslStoreBundle.loadKeyStore(JksSslStoreBundle.java:137) ~[spring-boot-4.0.0.jar:4.0.0]
+	... 20 common frames omitted
+

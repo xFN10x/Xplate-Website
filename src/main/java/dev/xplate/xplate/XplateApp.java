@@ -1,4 +1,4 @@
-package dev.xplate.bedrockr;
+package dev.xplate.xplate;
 
 import java.nio.file.Path;
 
@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan("dev.xplate.bedrockr")
-public class BedrockRApp {
+@ComponentScan("dev.xplate.xplate")
+public class XplateApp {
     public static String WEBSITE_PATH;
 
     public static void init(String websitePath) {
