@@ -6,4 +6,4 @@ This server includes 2 spring boot apps, with 1 controller each, that handles si
 ## Building
 _You need to have Java 25 before you start_
 
-Run `./gradlew clean build shadowjar`, then you can find the jar in `/build/builtJars`
+Run `sudo ./gradlew clean build shadowjar`, then you can find the jar in `/build/builtJars`
