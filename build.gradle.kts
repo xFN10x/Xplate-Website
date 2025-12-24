@@ -26,8 +26,9 @@ repositories {
 
 dependencies {
 	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-webmvc
-	implementation("org.springframework.boot:spring-boot-starter-webmvc")
-	implementation("org.springframework.boot:spring-boot-starter-actuator")
+	implementation("org.springframework.boot:spring-boot-starter-webmvc:4.0.1")	
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-actuator
+	implementation("org.springframework.boot:spring-boot-starter-actuator:4.0.1")
 
 	// https://mvnrepository.com/artifact/commons-io/commons-io
 	implementation("commons-io:commons-io:2.21.0")
