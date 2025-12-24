@@ -43,7 +43,7 @@ tasks.test {
 
 tasks.named<com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar>("shadowJar") {
   archiveBaseName = "XplateServer"
-  archiveVersion = "1.0"
+  archiveVersion = "2.0"
   destinationDirectory = layout.buildDirectory.dir("builtJars")
   archiveClassifier = ""
 }
