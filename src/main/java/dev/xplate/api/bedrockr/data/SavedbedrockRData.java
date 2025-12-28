@@ -34,14 +34,17 @@ public class SavedbedrockRData extends SavedFile {
     public ElementMade getElementMade(int index) {
         try {
             return ElementsMade.get(index);
-
         } catch (Exception e) {
             return null;
         }
     }
 
     public WorkspaceMade getWorkspaceMade(int index) {
-        return WorkspacesMade.get(index);
+        try {
+            return WorkspacesMade.get(index);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     public ElementMade[] getElementsMade() {

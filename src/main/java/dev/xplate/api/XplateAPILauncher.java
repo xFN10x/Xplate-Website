@@ -15,7 +15,7 @@ public class XplateAPILauncher {
 		if (args.length >= 2) {
 			defaults1.put("server.ssl.enabled", "true");
 			defaults1.put("server.ssl.bundle", "bundle1");
-			defaults1.put("server.port", "8081");
+			defaults1.put("server.port", "8080");
 			defaults1.put("spring.ssl.bundle.pem.bundle1.keystore.certificate", args[0]);
 			defaults1.put(
 					"spring.ssl.bundle.pem.bundle1.keystore.private-key", args[1]);

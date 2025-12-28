@@ -1,7 +1,7 @@
-# Xplate Website Server
-This is a sping boot java server, handling all the traffic for https://xplate.dev, and https://bedrockr.xplate.dev
+# Xplate API Server
+This is a spring boot java server, containing various restful apis for my personal use.
 
-This server includes 2 spring boot apps, with 1 controller each, that handles simple static web stuff.
+You can access these at <https://api.xplate.dev>.
 
 ## Building
 _You need to have Java 25 before you start_

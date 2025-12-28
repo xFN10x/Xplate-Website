@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>api.xplate.dev</title>
+    <style>
+      @font-face {
+        font-family: "Minecraft";
+        src: url(font/font.otf) format("opentype");
+      }
+
+      @font-face {
+        font-family: "Monocraft";
+        src: url(font/Monocraft.otf) format("opentype");
+      }
+
+      body {
+        background-color: #1c1c1c;
+      }
+
+      :root {
+        --accent: #9e0084b3;
+        --accent-darker: #3d0033b3;
+      }
+
+      * {
+        font-family: "Minecraft", sans-serif;
+        font-weight: normal;
+        color: white;
+      }
+
+      code {
+        background-color: #313131;
+        padding: 2px;
+        font-family: "Monocraft";
+      }
+
+      .dual-div {
+        display: flex;
+        margin: 2rem 0;
+      }
+
+      .showcase {
+        outline: 6px double #0000008a;
+        background: #00000050;
+        padding: 1rem;
+        max-width: 50%;
+      }
+
+      .full-button {
+        width: -webkit-fill-available;
+      }
+
+      .dual-div > div {
+        flex: 50%;
+        margin: 0 1rem;
+      }
+
+      subtle {
+        color: #0000002e;
+      }
+
+      .section-div {
+        padding: 3rem 1rem;
+      }
+
+      .example-div {
+        display: flex;
+        justify-content: center;
+      }
+
+      .example-div > img {
+        width: 40%;
+        margin: auto;
+      }
+
+      .no-shadow {
+        filter: unset;
+      }
+
+      .lighter-bg > * {
+        color: black;
+      }
+
+      .centered {
+        text-align: center;
+      }
+
+      img {
+        border-radius: 6px;
+        filter: drop-shadow(#00000050 8px 8px 2px)
+          drop-shadow(#00000050 -1px -1px 2px);
+      }
+
+      a {
+        color: var(--accent) !important;
+      }
+
+      header {
+        margin: 0;
+      }
+
+      header > * {
+        padding: 1rem;
+        background-color: rgb(51, 1, 98);
+      }
+
+      header > * > * > a {
+        margin: 0 1rem;
+        color: rgb(173, 0, 173) !important;
+      }
+
+      button {
+        background-color: #0000009e;
+        border: 4px solid #00000039;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        transition-duration: 0.2s;
+      }
+
+      details {
+        margin: 1rem;
+        padding: 1rem;
+        border: 2px #37b601 dotted;
+      }
+
+      button:disabled {
+        color: #00000027;
+        cursor: not-allowed !important;
+      }
+
+      button:enabled:hover {
+        border: 4px solid var(--accent-darker);
+      }
+
+      #older-ver-div {
+        text-align: center;
+      }
+
+      #older-ver-div > * {
+        text-align: initial;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>welcome to api.xplate.dev</h2>
+    <p>not much here you can browse, but you can go to <a id="elementMadeExampleText" href="bedrockr/v1/elementMade">https://api.xplate.dev/bedrockr/v1/elementMade</a> to view elements made in bedrockR</p>
+  </body>
+  <script>
+    const elementMadeExampleText = document.getElementById("elementMadeExampleText")
+
+    const url = `https:${location.hostname}${location.port == '' ? "" : ":" + location.port}/bedrockr/v1/elementMade`;
+    elementMadeExampleText.innerText = url;
+  </script>
+</html>
