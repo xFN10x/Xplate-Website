@@ -3,12 +3,11 @@ plugins {
 	java
 	id("org.springframework.boot") version "4.0.0"
 	id("io.spring.dependency-management") version "1.1.7"
-    id("com.gradleup.shadow") version "9.2.2"
 }
 
 group = "dev"
-version = "1.0"
-description = "Server handler for most Xplate.dev sub-domains"
+version = "2.0"
+description = "Server handler for most api.xplate.dev"
 
 java {
 	toolchain {
@@ -17,7 +16,7 @@ java {
 }
 
 application {
-    mainClass = "dev.xplate.XplateWebsiteServerApplication"
+    mainClass = "dev.xplate.api.XplateAPILauncher"
 }
 
 repositories {
@@ -39,11 +38,4 @@ dependencies {
 
 tasks.test {
     failOnNoDiscoveredTests = false
-}
-
-tasks.named<com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar>("shadowJar") {
-  archiveBaseName = "XplateServer"
-  archiveVersion = "2.0"
-  destinationDirectory = layout.buildDirectory.dir("builtJars")
-  archiveClassifier = ""
 }
