@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class XplateAPILauncher {
 
-	public static void main(String[] args) {
+	static void main(String[] args) {
 		// arg 0 is cert, 1 is private key
 		SpringApplication APIApp = new SpringApplication(XplateAPILauncher.class);
 		Map<String, Object> defaults1 = new HashMap<String, Object>();

@@ -18,7 +18,7 @@ import dev.xplate.api.bedrockr.data.SavedbedrockRData.WorkspaceMade;
 
 @RestController
 @RequestMapping("/bedrockr/v1")
-public class v1Controller {
+public class BRv1Controller {
 
     //elements made
 

@@ -5,6 +5,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/psptools/v1")
-public class v1Controller {
+public class PTv1Controller {
 
 }
