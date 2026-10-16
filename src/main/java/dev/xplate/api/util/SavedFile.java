@@ -72,7 +72,7 @@ public abstract class SavedFile {
     public void dirty() {
         if (cleanTask.scheduledExecutionTime() != 0)
             cleanTask.cancel();
-        cleaningTimer.schedule(cleanTask, 2000l);
+        cleaningTimer.schedule(cleanTask, 2000L);
         dirty = true;
     }
 

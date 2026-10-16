@@ -7,7 +7,7 @@ plugins {
 
 group = "dev"
 version = "2.0"
-description = "Server handler for most api.xplate.dev"
+description = "Server handler for api.xplate.dev"
 
 java {
 	toolchain {

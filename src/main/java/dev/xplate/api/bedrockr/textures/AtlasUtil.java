@@ -1,13 +1,17 @@
 package dev.xplate.api.bedrockr.textures;
 
+import org.apache.commons.io.FileUtils;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 
+import static dev.xplate.api.util.SavedFile.getDataFolder;
 import static java.lang.Math.*;
 
 public class AtlasUtil {
@@ -30,11 +34,11 @@ public class AtlasUtil {
         }
 
         JLabel jLabel = new JLabel();
-        jLabel.setIcon(new ImageIcon(makeAtlas(ary.toArray(new BufferedImage[0]))));
+        jLabel.setIcon(new ImageIcon(makeAtlas("test",ary.toArray(new BufferedImage[0]))));
         //jWindow.setVisible(true);
     }
 
-    public static BufferedImage makeAtlas(BufferedImage... images) {
+    public static BufferedImage makeAtlas(String name,BufferedImage... images) {
         int maxSize = 0;
         for (BufferedImage image : images) {
 
@@ -71,7 +75,9 @@ public class AtlasUtil {
             lastY += image.getHeight();
         }
         try {
-            ImageIO.write(img, "png", new File("img.png"));
+            File imgOut = getDataFolder().resolve("atlas/" + name + "-atlas.png").toFile();
+            FileUtils.createParentDirectories(imgOut);
+            ImageIO.write(img, "png", imgOut);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
