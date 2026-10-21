@@ -20,7 +20,7 @@ import dev.xplate.api.bedrockr.data.SavedbedrockRData.WorkspaceMade;
 @RequestMapping("/bedrockr/v1")
 public class BRv1Controller {
 
-    //elements made
+    ///elements made
 
     @PostMapping("/elementMade")
     public void newElementMade(@RequestBody ElementMade newElementMade) throws JsonSyntaxException, IOException {
@@ -46,7 +46,7 @@ public class BRv1Controller {
         return ResponseEntity.ok(elementMade);
     }
 
-    //workspaces made
+    ///workspaces made
 
     @PostMapping("/workspaceMade")
     public void newWorkspaceMade(@RequestBody WorkspaceMade newWorkspaceMade) throws JsonSyntaxException, IOException {
@@ -70,5 +70,12 @@ public class BRv1Controller {
             return ResponseEntity.notFound().build();
 
         return ResponseEntity.ok(WorkspaceMade);
+    }
+    
+    //textures
+
+    @GetMapping("/textures/")
+    public ResponseEntity<Byte[]> getBlockTextures() {
+        return ResponseEntity.status(501).build();
     }
 }

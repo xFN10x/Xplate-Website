@@ -1,5 +1,6 @@
 package dev.xplate.api.bedrockr.data;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,11 +8,15 @@ import java.util.Date;
 
 import dev.xplate.api.util.SavedFile;
 import jakarta.annotation.Nullable;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class SavedbedrockRData extends SavedFile {
 
+    private static final Logger log = LogManager.getLogger(SavedbedrockRData.class);
+
     public record ElementMade(Date timeMade, @Nullable Object elementData, int bedrockRVersion,
-            @Nullable String workspaceName) implements Comparable<ElementMade> {
+                              @Nullable String workspaceName) implements Comparable<ElementMade> {
 
         @Override
         public int compareTo(ElementMade o) {
@@ -28,8 +33,18 @@ public class SavedbedrockRData extends SavedFile {
         }
     }
 
+    public Long lastSamplesRelease; 
     private ArrayList<ElementMade> ElementsMade = new ArrayList<ElementMade>();
     private ArrayList<WorkspaceMade> WorkspacesMade = new ArrayList<WorkspaceMade>();
+    
+    public static SavedbedrockRData Load() {
+        try {
+            return ((SavedbedrockRData) new SavedbedrockRData().load());
+        } catch (IOException e) {
+            log.error("Failed to load saved bedrockR data!", e);
+            return null;
+        }
+    }
 
     public ElementMade getElementMade(int index) {
         try {

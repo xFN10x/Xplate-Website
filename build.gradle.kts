@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "dev"
-version = "2.0"
+version = "3.0"
 description = "Server handler for api.xplate.dev"
 
 java {

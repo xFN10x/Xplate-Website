@@ -14,23 +14,24 @@ import org.apache.commons.io.FileUtils;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
+import org.apache.logging.log4j.LogManager;
 
 public abstract class SavedFile {
-    protected static Logger LOG = Logger.getGlobal();
+    private static final org.apache.logging.log4j.Logger log = LogManager.getLogger(SavedFile.class);
 
     public static Path getDataFolder() {
         return Path.of(System.getProperty("user.home"), "XplateAPI");
     }
 
-    protected transient Timer cleaningTimer = new Timer("clean" + getClass().getSimpleName());
-    private transient TimerTask cleanTask = new TimerTask() {
+    protected transient Timer cleaningTimer = new Timer("clean-" + getClass().getSimpleName());
+    private final transient TimerTask cleanTask = new TimerTask() {
 
         @Override
         public void run() {
             try {
                 wash();
             } catch (IOException e) {
-                e.printStackTrace();
+                log.warn("Failed to wash saved file: " + getClass().getSimpleName(), e);
             }
         }
 
@@ -79,7 +80,7 @@ public abstract class SavedFile {
     public void wash() throws IOException {
         save();
         dirty = false;
-        LOG.info("Washed " + getClass().getSimpleName() + " to location: " + saveLocation().toString());
+        log.info("Washed {} to location: {}", getClass().getSimpleName(), saveLocation().toString());
     }
 
     abstract public Path saveLocation();
