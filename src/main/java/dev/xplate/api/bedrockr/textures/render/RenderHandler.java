@@ -1,5 +1,6 @@
 package dev.xplate.api.bedrockr.textures.render;
 import dev.xplate.api.bedrockr.util.SamplesBlockTextureRef;
+import dev.xplate.api.bedrockr.util.SamplesBlockTextures;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -10,6 +11,8 @@ import java.awt.image.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
+
+import static dev.xplate.api.bedrockr.textures.render.ImageUtilities.toBuffered;
 
 
 public class RenderHandler {
@@ -31,36 +34,22 @@ public class RenderHandler {
         frame.setBackground(Color.BLACK);
 
         final Graphics graphics = frame.getContentPane().getGraphics();
-        graphics.drawImage(ImageUtilities.ResizeImage(render6SideBlock(
+        graphics.drawImage(ImageUtilities.ResizeImage(renderBlock(
                 "test",
                 missing(),
                 //makeSolidTest(Color.GRAY),
                 //makeSolidTest(Color.GREEN),
                 makeSolidTest(Color.RED),
-                makeSolidTest(Color.GREEN)
-                //,makeSolidTest(Color.YELLOW)
+                makeSolidTest(Color.GREEN),
+                //,makeSolidTest(Color.YELLOW),
+                SamplesBlockTextureRef.BlockTextureType.SIX_SIDED
         ), 300, 300), 0, 0, null);
     }
-    public static BufferedImage renderAllSideBlock(String name, BufferedImage t) throws IOException {
-        return renderLogBlock(name,t,t,t);
-    }
 
-    public static BufferedImage renderLogBlock(String name, BufferedImage t, BufferedImage d, BufferedImage side) throws IOException {
-        return render6SideBlock(name,
-                t,
-                //d,
-                //side,
-                side,
-                side
-                //,side
-        );
-    }
 
-    public static BufferedImage renderBlock(String name, SamplesBlockTextureRef tex) throws IOException {
-        return switch (btex.getMode()) {
-            case BlockTexture.PILLAR_MODE -> renderLogBlock(name,  resToBuf(btex.upTex,res), resToBuf(btex.downTex,res), resToBuf(btex.northTex,res));
-            case BlockTexture.PER_FACE_MODE -> render6SideBlock(name,  resToBuf(btex.upTex,res), resToBuf(btex.westTex,res), resToBuf(btex.northTex,res));
-            default -> renderAllSideBlock(name, resToBuf(btex.upTex,res));
+    public static BufferedImage renderBlock(String name, SamplesBlockTextures tex) throws IOException {
+        return switch (tex.type()) {
+            default -> renderBlock(name,  tex.top_all(), tex.west(), tex.north_side(), tex.type());
         };
     }
 
@@ -121,9 +110,9 @@ public class RenderHandler {
         return bufferedImage;
     }
 
-    public static BufferedImage render6SideBlock(String name, BufferedImage t, 
+    public static BufferedImage renderBlock(String name, BufferedImage t, 
                                                 // BufferedImage d, BufferedImage e,
-                                                 BufferedImage w, BufferedImage n
+                                                 BufferedImage w, BufferedImage n, SamplesBlockTextureRef.BlockTextureType type
                                                 //,BufferedImage s
     ) throws IOException {
         var top = toBuffered(ImageUtilities.ResizeImage(Objects.requireNonNullElse(t, missing()), 60, 60, Image.SCALE_AREA_AVERAGING));
@@ -131,40 +120,48 @@ public class RenderHandler {
         //var east = toBuffered(ImageUtilities.ResizeImage(Objects.requireNonNullElse(e, missing()), 50, 50));
         var west = toBuffered(ImageUtilities.ResizeImage(Objects.requireNonNullElse(w, missing()), 50, 50, Image.SCALE_AREA_AVERAGING));
         var north = toBuffered(ImageUtilities.ResizeImage(Objects.requireNonNullElse(n, missing()), 50, 50, Image.SCALE_AREA_AVERAGING));
+        if (type == SamplesBlockTextureRef.BlockTextureType.SINGLE) {
+            west = top;
+            north = top;
+        }
         //var south = toBuffered(ImageUtilities.ResizeImage(Objects.requireNonNullElse(s, missing()), 50, 50));
         final int width = 100;
         final int height = 100;
         final BufferedImage main = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 
-        final BufferedImage side1 = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-        final Graphics2D grap1 = side1.createGraphics();
-        grap1.setColor(Color.BLUE);
-        grap1.scale(1, .5);
-        grap1.rotate(Math.toRadians(45));
-        grap1.drawImage(top, null, 35, -35);
+        if (type == SamplesBlockTextureRef.BlockTextureType.SINGLE_ALT) {
+            main.createGraphics().drawImage(ImageUtilities.ResizeImage(top, 100, 100), 0,0, null);
+        } else {
+            final BufferedImage side1 = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+            final Graphics2D grap1 = side1.createGraphics();
+            grap1.setColor(Color.BLUE);
+            grap1.scale(1, .5);
+            grap1.rotate(Math.toRadians(45));
+            grap1.drawImage(top, null, 35, -35);
 
-        final BufferedImage side2 = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-        final Graphics2D grap2 = side2.createGraphics();
-        grap2.setColor(Color.BLUE);
-        grap2.scale(.83, 1);
-        grap2.shear(0,.41);
-        grap2.drawImage(west, new BrightnessFilter(.75f), 10, 16);
+            final BufferedImage side2 = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+            final Graphics2D grap2 = side2.createGraphics();
+            grap2.setColor(Color.BLUE);
+            grap2.scale(.83, 1);
+            grap2.shear(0, .41);
+            grap2.drawImage(west, new BrightnessFilter(.75f), 10, 16);
 
-        final BufferedImage side3 = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-        final Graphics2D grap3 = side3.createGraphics();
-        grap3.setColor(Color.BLUE);
-        grap3.scale(.83, 1);
-        grap3.shear(0,-.42);
-        grap3.drawImage(north, new BrightnessFilter(.5f), 60, 66);
+            final BufferedImage side3 = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+            final Graphics2D grap3 = side3.createGraphics();
+            grap3.setColor(Color.BLUE);
+            grap3.scale(.83, 1);
+            grap3.shear(0, -.42);
+            grap3.drawImage(north, new BrightnessFilter(.5f), 60, 66);
 
-        final Graphics2D maing = main.createGraphics();
-        maing.translate(0,5);
-        maing.drawImage(side1, null, 0, 0);
-        maing.drawImage(side2, null, 0, 0);
-        maing.drawImage(side3, null, 0, 0);
+            final Graphics2D maing = main.createGraphics();
+            maing.translate(0, 5);
+            maing.drawImage(side1, null, 0, 0);
+            maing.drawImage(side2, null, 0, 0);
+            maing.drawImage(side3, null, 0, 0);
+        }
 
 
-        File imageFile = RFileOperations.getBaseDirectory("cache", "renders", name + ".png");
+        File imageFile = new File(name + ".png");
         ImageIO.write(main, "png", imageFile);
 
         return main;

@@ -50,7 +50,9 @@ public class BRSamplesUtil {
     public static JsonObject getJson(String path) throws IOException, InterruptedException {
         HttpRequest req = makeGET("https://raw.githubusercontent.com/Mojang/bedrock-samples/refs/heads/main/" + path);
         HttpResponse<String> res = CLIENT.send(req, HttpResponse.BodyHandlers.ofString());
-        return JsonParser.parseString(res.body()).getAsJsonObject();
+        String bod = res.body();
+        log.info("Got JSON " + path + ", " + bod.substring(0, Math.min(50, bod.length())));
+        return JsonParser.parseString(bod).getAsJsonObject();
     }
 
     public static BufferedImage getImage(String path) throws IOException, InterruptedException {
@@ -98,36 +100,40 @@ public class BRSamplesUtil {
     ///@return A map, the key being the block id, and value being a BlockTexture object determining how the block texture will be rendered
     public static HashMap<String, SamplesBlockTextureRef> getTextureNames() {
         try {
-            JsonObject blocks = getJson("resources/blocks.json");
+            JsonObject blocks = getJson("resource_pack/blocks.json");
             HashMap<String, SamplesBlockTextureRef> building = new HashMap<>();
             for (Map.Entry<String, JsonElement> entry : blocks.entrySet()) {
                 String key = entry.getKey();
-                JsonObject val = entry.getValue().getAsJsonObject();
+                if (key.equals("format_version")) continue;
+                log.info("Getting texture names... {}", entry.getKey());
+                JsonObject fullval = entry.getValue().getAsJsonObject();
+                if (!fullval.has("textures")) continue;
+                JsonElement val = fullval.get("textures");
                 if (val.isJsonPrimitive()) {
                     building.put(key, new SamplesBlockTextureRef(
                             val.getAsString(), false
                     ));
                     continue;
-                }
+                } else if (val instanceof JsonObject obj)
                 //log type
-                if (hasAll(val, "side", "up", "down")) {
+                if (hasAll(obj, "side", "up", "down")) {
                     building.put(key, new SamplesBlockTextureRef(
-                            val.get("side").getAsString(),
-                            val.get("top").getAsString(),
-                            val.get("bottom").getAsString()
+                            obj.get("side").getAsString(),
+                            obj.get("up").getAsString(),
+                            obj.get("down").getAsString()
                     ));
-                } else if (hasAll(val, "north", "up", "down", "south", "east", "west")) {
+                } else if (hasAll(obj, "north", "up", "down", "south", "east", "west")) {
                     building.put(key, new SamplesBlockTextureRef(
-                            val.get("top").getAsString(),
-                            val.get("bottom").getAsString(),
-                            val.get("north").getAsString(),
-                            val.get("south").getAsString(),
-                            val.get("east").getAsString(),
-                            val.get("west").getAsString()
+                            obj.get("up").getAsString(),
+                            obj.get("down").getAsString(),
+                            obj.get("north").getAsString(),
+                            obj.get("south").getAsString(),
+                            obj.get("east").getAsString(),
+                            obj.get("west").getAsString()
                     ));
                 } else {
                     building.put(key, new SamplesBlockTextureRef(
-                            val.entrySet().iterator().next().getValue().getAsString(),
+                            obj.entrySet().iterator().next().getValue().getAsString(),
                             true
                     ));
                 }

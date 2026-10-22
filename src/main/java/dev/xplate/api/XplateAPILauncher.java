@@ -1,12 +1,19 @@
 package dev.xplate.api;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
+import dev.xplate.api.bedrockr.textures.BlockTextures;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class XplateAPILauncher {
+
+	private static final Logger log = LoggerFactory.getLogger(XplateAPILauncher.class);
 
 	static void main(String[] args) {
 		// arg 0 is cert, 1 is private key
@@ -22,5 +29,11 @@ public class XplateAPILauncher {
 		}
 		APIApp.setDefaultProperties(defaults1);
 		APIApp.run(args);
+
+		try {
+			BlockTextures.checkBlocks();
+		} catch (IOException | InterruptedException e) {
+			log.error("Failed to check for block textures!", e);
+		}
 	}
 }

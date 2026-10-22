@@ -23,6 +23,10 @@ public class BlockTextures {
     protected static final Timer checkDownloadTimer = new Timer("check-block-textures-download");
     private static final Logger log = LogManager.getLogger(BlockTextures.class);
 
+    static void main() throws IOException, InterruptedException {
+    checkBlocks();    
+    }
+    
     static {
         checkDownloadTimer.scheduleAtFixedRate(new TimerTask() {
             @Override
@@ -33,7 +37,7 @@ public class BlockTextures {
                     log.error("Failed to check for block textures!", e);
                 }
             }
-        }, 12000L, 10000L);
+        }, 1000L * 60 * 10, 10000L);
     }
 
     public static void downloadAllBlockTextures() throws IOException, InterruptedException {
@@ -41,13 +45,14 @@ public class BlockTextures {
         final ExecutorService executorService = Executors.newFixedThreadPool(maxThreads);
         final HashMap<String, SamplesBlockTextureRef> textures = BRSamplesUtil.getTextureNames();
         final CountDownLatch latch = new CountDownLatch(textures.size());
+        HashMap<String, String> texturePaths = BRSamplesUtil.convertTextureNamesToFiles(textures.values().toArray(new SamplesBlockTextureRef[0]));
         for (Map.Entry<String, SamplesBlockTextureRef> entry : textures.entrySet()) {
             executorService.submit(() -> {
                 try {
                     String name = entry.getKey();
                     SamplesBlockTextureRef ref = entry.getValue();
 
-                    final BufferedImage top_all = BRSamplesUtil.getImage("resource_pack/"+ref.t);
+                    final BufferedImage top_all = BRSamplesUtil.getImage("resource_pack/"+texturePaths.get(ref.t));
                     latch.countDown();
                 } catch (Exception e) {
                     throw new RuntimeException(e);
@@ -60,9 +65,9 @@ public class BlockTextures {
         JsonObject json = BRSamplesUtil.jsonGET("https://api.github.com/repos/Mojang/bedrock-samples/releases/latest");
         long checkedID = json.get("id").getAsLong();
         Long lastId = SavedbedrockRData.Load().lastSamplesRelease;
-        if (lastId == null || lastId != checkedID) {
+        //if (lastId == null || lastId != checkedID) {
             downloadAllBlockTextures();
-        }
+        //}
     }
     
 }

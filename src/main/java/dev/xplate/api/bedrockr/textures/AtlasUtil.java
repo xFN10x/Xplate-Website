@@ -1,5 +1,6 @@
 package dev.xplate.api.bedrockr.textures;
 
+import dev.xplate.api.bedrockr.util.BRSamplesUtil;
 import org.apache.commons.io.FileUtils;
 
 import javax.imageio.ImageIO;
