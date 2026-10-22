@@ -17,6 +17,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class BRSamplesUtil {
     
@@ -58,17 +59,40 @@ public class BRSamplesUtil {
         return ImageIO.read(res.body());
     }
     
-    protected static @Nullable BufferedImage downloadResPackImageOrNull(String path) {
-        if (path == null) return null;
-        
-    }
     
+    ///Takes BlockTextureRefs, and compile the textures inside of them into a map, which holds the name of the texture from inside the blocktextureref, (key,) and then the path reletive to "/resource_pack/" in the samples repo.
     public static HashMap<String, String> convertTextureNamesToFiles(SamplesBlockTextureRef... refs) throws IOException, InterruptedException {
         JsonObject terrainTex = getJson("resource_pack/textures/terrain_texture.json");
-        HashMap<Object, Object> build = new HashMap<>();
+        JsonObject textureData = terrainTex.get("texture_data").getAsJsonObject();
+        HashMap<String, String> building = new HashMap<>();
         for (SamplesBlockTextureRef ref : refs) {
-            
+            JsonElement textureObj = textureData.get(ref.t);
+            /*
+            "textures": [
+                "textures/blocks/grass_top",
+                "textures/blocks/grass_top",
+             ...
+            ]
+             */
+            if (textureObj.isJsonArray()) building.put(ref.t, textureObj.getAsJsonArray().get(0).getAsString());
+           
+            /*
+            "textures": [
+                {
+                 "path": "textures/blocks/grass_side",
+                 "overlay_color": "#df6827" //TODO: implement tint
+               }
+            ]
+             */
+            if (textureObj.isJsonObject()) building.put(ref.t, textureObj.getAsJsonObject().get("path").getAsString());
+           
+            /*
+            "textures": "textures/blocks/grass_carried"
+             */
+            if (textureObj.isJsonPrimitive()) building.put(ref.t, textureObj.getAsString());
         }
+        //TODO: download these now
+        return building;
     }
     
     ///@return A map, the key being the block id, and value being a BlockTexture object determining how the block texture will be rendered
