@@ -1,48 +1,53 @@
 package dev.xplate.api.bedrockr.textures;
 
 import dev.xplate.api.bedrockr.util.BRSamplesUtil;
+import dev.xplate.api.util.SavedFile;
+import net.querz.nbt.io.NBTUtil;
+import net.querz.nbt.tag.CompoundTag;
+import net.querz.nbt.tag.EndTag;
 import org.apache.commons.io.FileUtils;
+import org.yaml.snakeyaml.util.Tuple;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import static dev.xplate.api.util.SavedFile.getDataFolder;
 import static java.lang.Math.*;
 
 public class AtlasUtil {
-
-    static void main(String[] args) {
-        JFrame jWindow = new JFrame("");
-        jWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        JFileChooser jFileChooser = new JFileChooser();
-        jFileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        jFileChooser.setMultiSelectionEnabled(true);
-        jFileChooser.showOpenDialog(null);
-
-        ArrayList<BufferedImage> ary = new ArrayList<>();
-        for (File selectedFile : jFileChooser.getSelectedFiles()) {
-            try {
-                ary.add(ImageIO.read(selectedFile));
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+    
+    public record Atlas(String name, BufferedImage img, HashMap<String, Tuple<Integer, Integer>> mapping) {
+        
+        public void save() throws IOException {
+            File saveloc = getDataFolder().resolve("atlas/" + name + "-atlas.nbt").toFile();
+            
+            ByteArrayOutputStream imgStream = new ByteArrayOutputStream();
+            ImageIO.write(img, "png",imgStream);
+            
+            CompoundTag tag = new CompoundTag();
+            tag.putByteArray("imgData", imgStream.toByteArray());
+            CompoundTag mappings = new CompoundTag();
+            for (Map.Entry<String, Tuple<Integer, Integer>> entry : mapping.entrySet()) {
+                Tuple<Integer, Integer> val = entry.getValue();
+                mappings.putIntArray(entry.getKey(), new int[] {val._1(), val._2()});
             }
+            tag.put("mappings", mappings);
+            NBTUtil.write(tag, saveloc);
         }
-
-        JLabel jLabel = new JLabel();
-        jLabel.setIcon(new ImageIcon(makeAtlas("test",ary.toArray(new BufferedImage[0]))));
-        //jWindow.setVisible(true);
     }
-
-    public static BufferedImage makeAtlas(String name,BufferedImage... images) {
+    
+    public static Atlas makeAtlas(String name, HashMap<String, BufferedImage> images) {
         int maxSize = 0;
-        for (BufferedImage image : images) {
-
+        for (BufferedImage image : images.values()) {
             maxSize += image.getHeight() * image.getWidth();
         }
 
@@ -54,7 +59,10 @@ public class AtlasUtil {
         int colMaxW = 0;
         int lastY = 0;
         Graphics2D grap = img.createGraphics();
-        for (BufferedImage image : images) {
+        HashMap<String, Tuple<Integer, Integer>> mappings = new HashMap<>();
+        for (Map.Entry<String, BufferedImage> entry : images.entrySet()) {
+            BufferedImage image = entry.getValue();
+            String imgName = entry.getKey();
             //Resize?
             if (lastX + image.getWidth() > img.getWidth()) {
                 w = closest2((int) pow(ceil(Math.sqrt(w + (image.getWidth() - (img.getWidth() - lastX)))), 2));
@@ -73,16 +81,16 @@ public class AtlasUtil {
             }
             colMaxW = max(colMaxW, image.getWidth());
             grap.drawImage(image, lastX, lastY, null);
+            mappings.put(imgName, new Tuple<>(lastX, lastY));
             lastY += image.getHeight();
         }
+        Atlas atlas = new Atlas(name, img, mappings);
         try {
-            File imgOut = getDataFolder().resolve("atlas/" + name + "-atlas.png").toFile();
-            FileUtils.createParentDirectories(imgOut);
-            ImageIO.write(img, "png", imgOut);
+            atlas.save();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return img;
+        return atlas;
     }
 
     public static int closest2(int x) {

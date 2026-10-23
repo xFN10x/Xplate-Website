@@ -37,5 +37,5 @@ out/
 
 ### VS Code ###
 .vscode/
-lastest.log
+lastest.log*
 /img.png

@@ -1,3 +1,5 @@
+import java.net.URI
+
 plugins {
     application
 	java
@@ -21,6 +23,7 @@ application {
 
 repositories {
 	mavenCentral()
+	maven { url = URI("https://jitpack.io") }
 }
 
 dependencies {
@@ -34,6 +37,9 @@ dependencies {
 
 	// https://mvnrepository.com/artifact/com.google.code.gson/gson
 	implementation("com.google.code.gson:gson:2.13.2")
+
+	//https://github.com/Querz/NBT
+	implementation("com.github.Querz:NBT:6.1")
 }
 
 tasks.test {

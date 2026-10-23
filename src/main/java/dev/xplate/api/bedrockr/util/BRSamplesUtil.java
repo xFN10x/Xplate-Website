@@ -4,6 +4,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import jakarta.annotation.Nullable;
+import org.apache.juli.logging.Log;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -55,10 +56,17 @@ public class BRSamplesUtil {
         return JsonParser.parseString(bod).getAsJsonObject();
     }
 
-    public static BufferedImage getImage(String path) throws IOException, InterruptedException {
+    public static BufferedImage getImage(String path, String fallback) throws IOException, InterruptedException {
         HttpRequest req = makeGET("https://raw.githubusercontent.com/Mojang/bedrock-samples/refs/heads/main/" + path);
         HttpResponse<InputStream> res = CLIENT.send(req, HttpResponse.BodyHandlers.ofInputStream());
-        return ImageIO.read(res.body());
+        BufferedImage returning = ImageIO.read(res.body());
+        if (returning == null) {
+            HttpRequest req2 = makeGET("https://raw.githubusercontent.com/Mojang/bedrock-samples/refs/heads/main/" + fallback);
+            HttpResponse<InputStream> res2 = CLIENT.send(req2, HttpResponse.BodyHandlers.ofInputStream());
+            returning = ImageIO.read(res2.body());
+            if (returning != null) log.warn("Path: {} didn't work, but the fallback did. ({})", path, fallback);
+        }
+        return returning;
     }
     
     
@@ -68,7 +76,28 @@ public class BRSamplesUtil {
         JsonObject textureData = terrainTex.get("texture_data").getAsJsonObject();
         HashMap<String, String> building = new HashMap<>();
         for (SamplesBlockTextureRef ref : refs) {
-            JsonElement textureObj = textureData.get(ref.t);
+            extractTexturePathFromTextureElement(ref.t , building, textureData);
+            extractTexturePathFromTextureElement(ref.d , building, textureData);
+            extractTexturePathFromTextureElement(ref.n , building, textureData);
+            extractTexturePathFromTextureElement(ref.s , building, textureData);
+            extractTexturePathFromTextureElement(ref.e , building, textureData);
+            extractTexturePathFromTextureElement(ref.w , building, textureData);
+        }
+        //TODO: download these now
+        return building;
+    }
+
+    private static void extractTexturePathFromTextureElement(String name, HashMap<String, String> building, JsonObject textureData) {
+        if (name == null) return;
+        log.info("Getting tex paths... {}", name);
+        JsonElement textureObj = textureData.get(name).getAsJsonObject().get("textures");
+        log.info("The val is {}", textureObj);
+            
+            /*
+            "textures": "textures/blocks/grass_carried"
+             */
+        if (textureObj.isJsonPrimitive()) building.put(name, textureObj.getAsString());
+            
             /*
             "textures": [
                 "textures/blocks/grass_top",
@@ -76,7 +105,13 @@ public class BRSamplesUtil {
              ...
             ]
              */
-            if (textureObj.isJsonArray()) building.put(ref.t, textureObj.getAsJsonArray().get(0).getAsString());
+        if (textureObj.isJsonArray()) {
+            JsonElement textureElement = textureObj.getAsJsonArray().get(0);
+            if (textureElement.isJsonPrimitive())
+            building.put(name, textureElement.getAsString());
+            else if (textureElement.isJsonObject())
+                building.put(name, textureElement.getAsJsonObject().get("path").getAsString());
+        }
            
             /*
             "textures": [
@@ -86,17 +121,9 @@ public class BRSamplesUtil {
                }
             ]
              */
-            if (textureObj.isJsonObject()) building.put(ref.t, textureObj.getAsJsonObject().get("path").getAsString());
-           
-            /*
-            "textures": "textures/blocks/grass_carried"
-             */
-            if (textureObj.isJsonPrimitive()) building.put(ref.t, textureObj.getAsString());
-        }
-        //TODO: download these now
-        return building;
+        if (textureObj.isJsonObject()) building.put(name, textureObj.getAsJsonObject().get("path").getAsString());
     }
-    
+
     ///@return A map, the key being the block id, and value being a BlockTexture object determining how the block texture will be rendered
     public static HashMap<String, SamplesBlockTextureRef> getTextureNames() {
         try {
