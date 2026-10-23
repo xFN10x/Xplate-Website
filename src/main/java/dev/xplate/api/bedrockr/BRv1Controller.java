@@ -87,7 +87,7 @@ public class BRv1Controller {
         try {
             byte[] blockTexturesRaw = BlockTextures.getBlockTexturesRaw();
             if (blockTexturesRaw == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-            return ResponseEntity.status(200).header("Content-Encoding", "gzip").contentType(MediaType.APPLICATION_OCTET_STREAM).body(blockTexturesRaw);
+            return ResponseEntity.status(200).header("Content-Encoding", "gzip").contentType(new MediaType("application", "x-nbt")).body(blockTexturesRaw);
         } catch (Exception e) {
             log.error("Failed to handle getting block textures request!", e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.toString());
