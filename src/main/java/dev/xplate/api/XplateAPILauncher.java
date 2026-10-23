@@ -18,7 +18,7 @@ public class XplateAPILauncher {
 	static void main(String[] args) {
 		// arg 0 is cert, 1 is private key
 		SpringApplication APIApp = new SpringApplication(XplateAPILauncher.class);
-		Map<String, Object> defaults1 = new HashMap<String, Object>();
+		Map<String, Object> defaults1 = new HashMap<>();
 		if (args.length >= 2) {
 			defaults1.put("server.ssl.enabled", "true");
 			defaults1.put("server.ssl.bundle", "bundle1");
