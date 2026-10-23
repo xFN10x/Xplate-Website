@@ -2,8 +2,10 @@ package dev.xplate.api.bedrockr.textures;
 
 import com.google.gson.JsonObject;
 import dev.xplate.api.bedrockr.data.SavedbedrockRData;
+import dev.xplate.api.bedrockr.textures.render.RenderHandler;
 import dev.xplate.api.bedrockr.util.BRSamplesUtil;
 import dev.xplate.api.bedrockr.util.SamplesBlockTextureRef;
+import dev.xplate.api.bedrockr.util.SamplesBlockTextures;
 import dev.xplate.api.util.SavedFile;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,7 +16,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.Duration;
 import java.time.Instant;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -24,10 +29,7 @@ public class BlockTextures {
 
     protected static final Timer checkDownloadTimer = new Timer("check-block-textures-download");
     private static final Logger log = LogManager.getLogger(BlockTextures.class);
-
-    static void main() throws IOException, InterruptedException {
-        checkBlocks();
-    }
+    protected static volatile CountDownLatch CHECKING_BLOCKS_LATCH = new CountDownLatch(0);
 
     static {
         checkDownloadTimer.scheduleAtFixedRate(new TimerTask() {
@@ -40,6 +42,16 @@ public class BlockTextures {
                 }
             }
         }, 1000L * 60 * 10, 10000L);
+    }
+
+    public static byte[] getBlockTexturesRaw() throws IOException, InterruptedException {
+        if (CHECKING_BLOCKS_LATCH.getCount() != 0) {
+            log.info("Someone tried to get block textures, but they are already being made.");
+            CHECKING_BLOCKS_LATCH.await();
+        }
+        checkBlocks();
+
+        return AtlasUtil.getAtlasRaw("block_textures");
     }
 
     public static void downloadAllBlockTextures() {
@@ -73,13 +85,15 @@ public class BlockTextures {
                         //log.debug("Getting buffered textures from {}. (path {})", name, fullPathT);
 
                         final BufferedImage top_all = BRSamplesUtil.getImage(fullPathT, fbfullPathT);
-                        final BufferedImage dowm = BRSamplesUtil.getImage(fullPathD, fbfullPathD);
+                        final BufferedImage down = BRSamplesUtil.getImage(fullPathD, fbfullPathD);
                         final BufferedImage north_side = BRSamplesUtil.getImage(fullPathN, fbfullPathN);
                         final BufferedImage south = BRSamplesUtil.getImage(fullPathS, fbfullPathS);
                         final BufferedImage east = BRSamplesUtil.getImage(fullPathE, fbfullPathE);
                         final BufferedImage west = BRSamplesUtil.getImage(fullPathW, fbfullPathW);
-                        if (top_all == null) log.warn("Top/All is null?? for {}. Path: {}, Fallback: {}", name, fullPathT, fbfullPathT);
-                        else textures_map.put(name, top_all);
+                        BufferedImage bufferedImage = RenderHandler.renderBlock(name, new SamplesBlockTextures(top_all, down, north_side, south, east, west, ref.type));
+                        if (top_all == null)
+                            log.warn("Top/All is null?? for {}. Path: {}, Fallback: {}", name, fullPathT, fbfullPathT);
+                        else textures_map.put(name, bufferedImage);
                     } catch (Exception e) {
                         log.error("Failed to download block texture.", e);
                     } finally {
@@ -91,18 +105,29 @@ public class BlockTextures {
             AtlasUtil.makeAtlas("block_textures", textures_map);
 
             log.info("Finished downloading block textures in {}sec.", Duration.between(start, Instant.now()));
+
+            JsonObject json = BRSamplesUtil.jsonGET("https://api.github.com/repos/Mojang/bedrock-samples/releases/latest");
+            long id = json.get("id").getAsLong();
+            SavedbedrockRData data = SavedbedrockRData.Load();
+            data.lastSamplesRelease = id;
+            data.save();
+            CHECKING_BLOCKS_LATCH.countDown();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
     public static void checkBlocks() throws IOException, InterruptedException {
+        if (CHECKING_BLOCKS_LATCH.getCount() != 0) return;
+        CHECKING_BLOCKS_LATCH = new CountDownLatch(1);
         JsonObject json = BRSamplesUtil.jsonGET("https://api.github.com/repos/Mojang/bedrock-samples/releases/latest");
         long checkedID = json.get("id").getAsLong();
         Long lastId = SavedbedrockRData.Load().lastSamplesRelease;
-        //if (lastId == null || lastId != checkedID) {
-        downloadAllBlockTextures();
-        //}
+        if (lastId == null || lastId != checkedID) {
+            downloadAllBlockTextures();
+        } else {
+            CHECKING_BLOCKS_LATCH.countDown();
+        }
     }
 
 }

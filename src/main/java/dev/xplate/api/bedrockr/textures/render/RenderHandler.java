@@ -48,9 +48,7 @@ public class RenderHandler {
 
 
     public static BufferedImage renderBlock(String name, SamplesBlockTextures tex) throws IOException {
-        return switch (tex.type()) {
-            default -> renderBlock(name,  tex.top_all(), tex.west(), tex.north_side(), tex.type());
-        };
+        return renderBlock(name,  tex.top_all(), tex.west(), tex.north_side(), tex.type());
     }
 
     public record BrightnessFilter(float mul) implements BufferedImageOp {
@@ -118,18 +116,15 @@ public class RenderHandler {
         var top = toBuffered(ImageUtilities.ResizeImage(Objects.requireNonNullElse(t, missing()), 60, 60, Image.SCALE_AREA_AVERAGING));
         //var down = toBuffered(ImageUtilities.ResizeImage(Objects.requireNonNullElse(d, missing()), 50, 50));
         //var east = toBuffered(ImageUtilities.ResizeImage(Objects.requireNonNullElse(e, missing()), 50, 50));
-        var west = toBuffered(ImageUtilities.ResizeImage(Objects.requireNonNullElse(w, missing()), 50, 50, Image.SCALE_AREA_AVERAGING));
-        var north = toBuffered(ImageUtilities.ResizeImage(Objects.requireNonNullElse(n, missing()), 50, 50, Image.SCALE_AREA_AVERAGING));
-        if (type == SamplesBlockTextureRef.BlockTextureType.SINGLE) {
-            west = top;
-            north = top;
-        }
+        var west = toBuffered(ImageUtilities.ResizeImage(Objects.requireNonNullElse(type == SamplesBlockTextureRef.BlockTextureType.SINGLE ? t : w, missing()), 50, 50, Image.SCALE_AREA_AVERAGING));
+        var north = toBuffered(ImageUtilities.ResizeImage(Objects.requireNonNullElse(type == SamplesBlockTextureRef.BlockTextureType.SINGLE ? t : n, missing()), 50, 50, Image.SCALE_AREA_AVERAGING));
         //var south = toBuffered(ImageUtilities.ResizeImage(Objects.requireNonNullElse(s, missing()), 50, 50));
         final int width = 100;
         final int height = 100;
+        final Dimension finalSize = new Dimension(75,75);
         final BufferedImage main = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 
-        if (type == SamplesBlockTextureRef.BlockTextureType.SINGLE_ALT) {
+        if (type == SamplesBlockTextureRef.BlockTextureType.SINGLE_ALT || type == SamplesBlockTextureRef.BlockTextureType.SINGLE) {
             main.createGraphics().drawImage(ImageUtilities.ResizeImage(top, 100, 100), 0,0, null);
         } else {
             final BufferedImage side1 = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
@@ -161,9 +156,9 @@ public class RenderHandler {
         }
 
 
-        File imageFile = new File(name + ".png");
-        ImageIO.write(main, "png", imageFile);
+       // File imageFile = new File(name + ".png");
+        //ImageIO.write(main, "png", imageFile);
 
-        return main;
+        return ImageUtilities.toBuffered(ImageUtilities.ResizeImage(main, finalSize));
     }
 }

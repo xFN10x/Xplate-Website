@@ -1,6 +1,12 @@
 package dev.xplate.api.bedrockr;
 
 import java.io.IOException;
+
+import dev.xplate.api.bedrockr.textures.BlockTextures;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +25,8 @@ import dev.xplate.api.bedrockr.data.SavedbedrockRData.WorkspaceMade;
 @RestController
 @RequestMapping("/bedrockr/v1")
 public class BRv1Controller {
+
+    private static final Logger log = LoggerFactory.getLogger(BRv1Controller.class);
 
     ///elements made
 
@@ -74,8 +82,15 @@ public class BRv1Controller {
     
     //textures
 
-    @GetMapping("/textures/")
-    public ResponseEntity<Byte[]> getBlockTextures() {
-        return ResponseEntity.status(501).build();
+    @GetMapping("/textures/block")
+    public ResponseEntity<?> getBlockTextures() {
+        try {
+            byte[] blockTexturesRaw = BlockTextures.getBlockTexturesRaw();
+            if (blockTexturesRaw == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            return ResponseEntity.status(200).header("Content-Encoding", "gzip").contentType(MediaType.APPLICATION_OCTET_STREAM).body(blockTexturesRaw);
+        } catch (Exception e) {
+            log.error("Failed to handle getting block textures request!", e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.toString());
+        }
     }
 }

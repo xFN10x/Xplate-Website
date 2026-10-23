@@ -42,7 +42,7 @@ public class SavedbedrockRData extends SavedFile {
             return ((SavedbedrockRData) new SavedbedrockRData().load());
         } catch (IOException e) {
             log.error("Failed to load saved bedrockR data!", e);
-            return null;
+            return new SavedbedrockRData();
         }
     }
 

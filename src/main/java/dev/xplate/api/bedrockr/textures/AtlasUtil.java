@@ -6,6 +6,8 @@ import net.querz.nbt.io.NBTUtil;
 import net.querz.nbt.tag.CompoundTag;
 import net.querz.nbt.tag.EndTag;
 import org.apache.commons.io.FileUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.yaml.snakeyaml.util.Tuple;
 
 import javax.imageio.ImageIO;
@@ -16,6 +18,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -25,10 +28,14 @@ import static java.lang.Math.*;
 
 public class AtlasUtil {
     
+    private static final Path ATLAS_FOLDER = getDataFolder().resolve("atlas/");
+    private static final Logger log = LoggerFactory.getLogger(AtlasUtil.class);
+
     public record Atlas(String name, BufferedImage img, HashMap<String, Tuple<Integer, Integer>> mapping) {
         
         public void save() throws IOException {
-            File saveloc = getDataFolder().resolve("atlas/" + name + "-atlas.nbt").toFile();
+            File saveloc = ATLAS_FOLDER.resolve(name + "-atlas.nbt").toFile();
+            File imgsaveloc = ATLAS_FOLDER.resolve(name + "-atlas.png").toFile();
             
             ByteArrayOutputStream imgStream = new ByteArrayOutputStream();
             ImageIO.write(img, "png",imgStream);
@@ -42,7 +49,17 @@ public class AtlasUtil {
             }
             tag.put("mappings", mappings);
             NBTUtil.write(tag, saveloc);
+            ImageIO.write(img, "png", imgsaveloc);
         }
+    }
+    
+    public static byte[] getAtlasRaw(String name) throws IOException {
+            Path path = ATLAS_FOLDER.resolve(name + "-atlas.nbt");
+            if (!Files.exists(path)) {
+                return null;
+            } else {
+                return Files.readAllBytes(path);
+            }
     }
     
     public static Atlas makeAtlas(String name, HashMap<String, BufferedImage> images) {
