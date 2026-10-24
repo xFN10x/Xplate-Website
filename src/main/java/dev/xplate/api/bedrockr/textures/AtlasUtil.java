@@ -1,17 +1,12 @@
 package dev.xplate.api.bedrockr.textures;
 
-import dev.xplate.api.bedrockr.util.BRSamplesUtil;
-import dev.xplate.api.util.SavedFile;
 import net.querz.nbt.io.NBTUtil;
 import net.querz.nbt.tag.CompoundTag;
-import net.querz.nbt.tag.EndTag;
-import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.yaml.snakeyaml.util.Tuple;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
@@ -19,7 +14,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,7 +25,7 @@ public class AtlasUtil {
     private static final Path ATLAS_FOLDER = getDataFolder().resolve("atlas/");
     private static final Logger log = LoggerFactory.getLogger(AtlasUtil.class);
 
-    public record Atlas(String name, BufferedImage img, HashMap<String, Tuple<Integer, Integer>> mapping) {
+    public record Atlas(String name, BufferedImage img, HashMap<String, Tuple<Integer, Integer>> posMapping, HashMap<String, Tuple<Integer, Integer>> sizeMapping) {
         
         public void save() throws IOException {
             File saveloc = ATLAS_FOLDER.resolve(name + "-atlas.nbt").toFile();
@@ -41,13 +35,23 @@ public class AtlasUtil {
             ImageIO.write(img, "png",imgStream);
             
             CompoundTag tag = new CompoundTag();
+            tag.putInt("format", 1);
             tag.putByteArray("imgData", imgStream.toByteArray());
-            CompoundTag mappings = new CompoundTag();
-            for (Map.Entry<String, Tuple<Integer, Integer>> entry : mapping.entrySet()) {
+
+            CompoundTag posMappings = new CompoundTag();
+            for (Map.Entry<String, Tuple<Integer, Integer>> entry : posMapping.entrySet()) {
                 Tuple<Integer, Integer> val = entry.getValue();
-                mappings.putIntArray(entry.getKey(), new int[] {val._1(), val._2()});
+                posMappings.putIntArray(entry.getKey(), new int[] {val._1(), val._2()});
             }
-            tag.put("mappings", mappings);
+
+            CompoundTag sizeMappings = new CompoundTag();
+            for (Map.Entry<String, Tuple<Integer, Integer>> entry : sizeMapping.entrySet()) {
+                Tuple<Integer, Integer> val = entry.getValue();
+                sizeMappings.putIntArray(entry.getKey(), new int[] {val._1(), val._2()});
+            }
+
+            tag.put("posMappings", posMappings);
+            tag.put("sizeMappings", sizeMappings);
             NBTUtil.write(tag, saveloc);
             ImageIO.write(img, "png", imgsaveloc);
         }
@@ -76,7 +80,8 @@ public class AtlasUtil {
         int colMaxW = 0;
         int lastY = 0;
         Graphics2D grap = img.createGraphics();
-        HashMap<String, Tuple<Integer, Integer>> mappings = new HashMap<>();
+        HashMap<String, Tuple<Integer, Integer>> posMappings = new HashMap<>();
+        HashMap<String, Tuple<Integer, Integer>> sizeMappings = new HashMap<>();
         for (Map.Entry<String, BufferedImage> entry : images.entrySet()) {
             BufferedImage image = entry.getValue();
             String imgName = entry.getKey();
@@ -98,10 +103,11 @@ public class AtlasUtil {
             }
             colMaxW = max(colMaxW, image.getWidth());
             grap.drawImage(image, lastX, lastY, null);
-            mappings.put(imgName, new Tuple<>(lastX, lastY));
+            posMappings.put(imgName, new Tuple<>(lastX, lastY));
+            sizeMappings.put(imgName, new Tuple<>(image.getWidth(), image.getHeight()));
             lastY += image.getHeight();
         }
-        Atlas atlas = new Atlas(name, img, mappings);
+        Atlas atlas = new Atlas(name, img, posMappings, sizeMappings);
         try {
             atlas.save();
         } catch (IOException e) {
