@@ -8,6 +8,7 @@ on:
 jobs:
   ssh_in_server:
     runs-on: ubuntu-latest
+    environment: ssh-server
     steps:
       - name: SSH Remote Commands
         # You may pin to the exact commit or the version.
