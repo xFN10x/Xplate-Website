@@ -20,6 +20,6 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           # Commands to be executed.
           script: |
-            ssh ${{ secrets.SERVER_REPO_PATH }}
+            cd ${{ secrets.SERVER_REPO_PATH }}
             git pull
             sudo systemctl restart xplate_server
