@@ -18,6 +18,7 @@ jobs:
           host: ${{ secrets.SERVER_HOST }}
           # Content of the SSH private key. For example, the raw content of ~/.ssh/id_rsa.
           key: ${{ secrets.SERVER_SSH_KEY }}
+          username: ${{ secrets.SERVER_USER }}
           # Commands to be executed.
           script: |
             cd ${{ secrets.SERVER_REPO_PATH }}
