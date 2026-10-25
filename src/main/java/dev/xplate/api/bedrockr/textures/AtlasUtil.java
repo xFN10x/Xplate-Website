@@ -2,6 +2,7 @@ package dev.xplate.api.bedrockr.textures;
 
 import net.querz.nbt.io.NBTUtil;
 import net.querz.nbt.tag.CompoundTag;
+import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.yaml.snakeyaml.util.Tuple;
@@ -52,6 +53,7 @@ public class AtlasUtil {
 
             tag.put("posMappings", posMappings);
             tag.put("sizeMappings", sizeMappings);
+            FileUtils.createParentDirectories(saveloc);
             NBTUtil.write(tag, saveloc);
             ImageIO.write(img, "png", imgsaveloc);
         }

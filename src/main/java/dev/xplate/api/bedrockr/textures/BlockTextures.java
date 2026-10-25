@@ -55,15 +55,15 @@ public class BlockTextures {
     }
 
     public static void downloadAllBlockTextures() {
-        int maxThreads = 10;
+        int maxThreads = 15;
         Instant start = Instant.now();
         try (final ExecutorService executorService = Executors.newFixedThreadPool(maxThreads)) {
             final HashMap<String, SamplesBlockTextureRef> textures = BRSamplesUtil.getTextureNames();
             final CountDownLatch latch = new CountDownLatch(textures.size());
             HashMap<String, String> texturePaths = BRSamplesUtil
                     .convertTextureNamesToFiles(textures.values().toArray(new SamplesBlockTextureRef[0]));
-            Path texture_save_loc = SavedFile.getDataFolder().resolve("btextures/");
-            Files.createDirectories(texture_save_loc);
+            //Path texture_save_loc = SavedFile.getDataFolder().resolve("btextures/");
+            //Files.createDirectories(texture_save_loc);
             final HashMap<String, BufferedImage> textures_map = new HashMap<>();
             log.info("Downloading block textures...");
             for (Map.Entry<String, SamplesBlockTextureRef> entry : textures.entrySet()) {
