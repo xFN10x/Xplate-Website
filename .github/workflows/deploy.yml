@@ -8,6 +8,7 @@ on:
 jobs:
   ssh_in_server:
     runs-on: ubuntu-latest
+    environment: ssh-server
     steps:
       - name: SSH Remote Commands
         # You may pin to the exact commit or the version.
@@ -17,8 +18,9 @@ jobs:
           host: ${{ secrets.SERVER_HOST }}
           # Content of the SSH private key. For example, the raw content of ~/.ssh/id_rsa.
           key: ${{ secrets.SERVER_SSH_KEY }}
+          username: ${{ secrets.SERVER_USER }}
           # Commands to be executed.
           script: |
-            ssh ${{ secrets.SERVER_REPO_PATH }}
+            cd ${{ secrets.SERVER_REPO_PATH }}
             git pull
             sudo systemctl restart xplate_server
