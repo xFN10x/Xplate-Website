@@ -24,7 +24,7 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-/// imma  try to make this without code from bedrockr
+/// imma try to make this without code from bedrockr
 public class BlockTextures {
 
     protected static final Timer checkDownloadTimer = new Timer("check-block-textures-download");
@@ -60,7 +60,8 @@ public class BlockTextures {
         try (final ExecutorService executorService = Executors.newFixedThreadPool(maxThreads)) {
             final HashMap<String, SamplesBlockTextureRef> textures = BRSamplesUtil.getTextureNames();
             final CountDownLatch latch = new CountDownLatch(textures.size());
-            HashMap<String, String> texturePaths = BRSamplesUtil.convertTextureNamesToFiles(textures.values().toArray(new SamplesBlockTextureRef[0]));
+            HashMap<String, String> texturePaths = BRSamplesUtil
+                    .convertTextureNamesToFiles(textures.values().toArray(new SamplesBlockTextureRef[0]));
             Path texture_save_loc = SavedFile.getDataFolder().resolve("btextures/");
             Files.createDirectories(texture_save_loc);
             final HashMap<String, BufferedImage> textures_map = new HashMap<>();
@@ -82,7 +83,7 @@ public class BlockTextures {
                         String fbfullPathS = "resource_pack/textures/blocks/" + ref.s + ".png";
                         String fbfullPathE = "resource_pack/textures/blocks/" + ref.e + ".png";
                         String fbfullPathW = "resource_pack/textures/blocks/" + ref.w + ".png";
-                        //log.debug("Getting buffered textures from {}. (path {})", name, fullPathT);
+                        // log.debug("Getting buffered textures from {}. (path {})", name, fullPathT);
 
                         final BufferedImage top_all = BRSamplesUtil.getImage(fullPathT, fbfullPathT);
                         final BufferedImage down = BRSamplesUtil.getImage(fullPathD, fbfullPathD);
@@ -90,10 +91,12 @@ public class BlockTextures {
                         final BufferedImage south = BRSamplesUtil.getImage(fullPathS, fbfullPathS);
                         final BufferedImage east = BRSamplesUtil.getImage(fullPathE, fbfullPathE);
                         final BufferedImage west = BRSamplesUtil.getImage(fullPathW, fbfullPathW);
-                        BufferedImage bufferedImage = RenderHandler.renderBlock(name, new SamplesBlockTextures(top_all, down, north_side, south, east, west, ref.type));
+                        BufferedImage bufferedImage = RenderHandler.renderBlock(name,
+                                new SamplesBlockTextures(top_all, down, north_side, south, east, west, ref.type));
                         if (top_all == null)
                             log.warn("Top/All is null?? for {}. Path: {}, Fallback: {}", name, fullPathT, fbfullPathT);
-                        else textures_map.put(name, bufferedImage);
+                        else
+                            textures_map.put(name, bufferedImage);
                     } catch (Exception e) {
                         log.error("Failed to download block texture.", e);
                     } finally {
@@ -106,26 +109,32 @@ public class BlockTextures {
 
             log.info("Finished downloading block textures in {}sec.", Duration.between(start, Instant.now()));
 
-            JsonObject json = BRSamplesUtil.jsonGET("https://api.github.com/repos/Mojang/bedrock-samples/releases/latest");
+            JsonObject json = BRSamplesUtil
+                    .jsonGET("https://api.github.com/repos/Mojang/bedrock-samples/releases/latest");
             long id = json.get("id").getAsLong();
             SavedbedrockRData data = SavedbedrockRData.Load();
             data.lastSamplesRelease = id;
             data.save();
-            CHECKING_BLOCKS_LATCH.countDown();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
     public static void checkBlocks() throws IOException, InterruptedException {
-        if (CHECKING_BLOCKS_LATCH.getCount() != 0) return;
-        CHECKING_BLOCKS_LATCH = new CountDownLatch(1);
-        JsonObject json = BRSamplesUtil.jsonGET("https://api.github.com/repos/Mojang/bedrock-samples/releases/latest");
-        long checkedID = json.get("id").getAsLong();
-        Long lastId = SavedbedrockRData.Load().lastSamplesRelease;
-        if (lastId == null || lastId != checkedID) {
-            downloadAllBlockTextures();
-        } else {
+        try {
+            if (CHECKING_BLOCKS_LATCH.getCount() != 0)
+                return;
+            CHECKING_BLOCKS_LATCH = new CountDownLatch(1);
+            JsonObject json = BRSamplesUtil
+                    .jsonGET("https://api.github.com/repos/Mojang/bedrock-samples/releases/latest");
+            long checkedID = json.get("id").getAsLong();
+            Long lastId = SavedbedrockRData.Load().lastSamplesRelease;
+            if (lastId == null || lastId != checkedID) {
+                downloadAllBlockTextures();
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
             CHECKING_BLOCKS_LATCH.countDown();
         }
     }

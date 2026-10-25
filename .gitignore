@@ -6,6 +6,8 @@ build/
 !**/src/test/**/build/
 *.log
 .vscode
+gradlew
+gradlew.bat
 
 ### STS ###
 .apt_generated
